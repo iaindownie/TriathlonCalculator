@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="imperial">
+        <item>Select distance</item>
+        <item>Marathon (miles)</item>
+        <item>20 miles</item>
+        <item>1/2 marathon (miles)</item>
+        <item>10 miles</item>
+        <item>5 miles</item>
+        <item>3.1 miles (Parkrun)</item>
+    </string-array>
+
+    <string-array name="metric">
+        <item>Select distance</item>
+        <item>Marathon (kms)</item>
+        <item>30 km</item>
+        <item>1/2 marathon (kms)</item>
+        <item>10 km</item>
+        <item>5 km (Parkrun)</item>
+    </string-array>
+    
+    
+</resources>

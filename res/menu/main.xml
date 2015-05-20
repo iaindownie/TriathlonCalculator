@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.spawny.testtabbing.MainActivity" >
+
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:title="@string/about"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/instructions"
+        android:orderInCategory="200"
+        android:title="@string/instructions"
+        app:showAsAction="never"/>
+
+</menu>
