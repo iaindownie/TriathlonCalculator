@@ -96,17 +96,17 @@ public class MainActivity extends ActionBarActivity implements
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.about) {
-			this.doDialog();
+			this.doAboutDialog();
 			return true;
 		}
 		if (id == R.id.instructions) {
-			this.doDialog();
+			this.doHelpDialog();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private void doDialog() {
+	private void doAboutDialog() {
 		try {
 			pInfo = getPackageManager().getPackageInfo("org.spawny.duathlon",
 					PackageManager.GET_META_DATA);
@@ -115,7 +115,7 @@ public class MainActivity extends ActionBarActivity implements
 			e.printStackTrace();
 		}
 		dialog = new Dialog(this);
-		dialog.setContentView(R.layout.custom_dialog2);
+		dialog.setContentView(R.layout.about);
 		dialog.setTitle("Run/Bike Calculator " + pInfo.versionName);
 		TextView text = (TextView) dialog.findViewById(R.id.text);
 		StringBuffer spawny = new StringBuffer();
@@ -128,6 +128,24 @@ public class MainActivity extends ActionBarActivity implements
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.runningman48);
 		Button but = (Button) dialog.findViewById(R.id.dismissButton);
+		dialog.show();
+		but.setOnClickListener(new OnClickListener() {
+			// @Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+	}
+	
+	
+	private void doHelpDialog() {
+		
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.instructions);
+		dialog.setTitle("Instructions");
+		ImageView image = (ImageView) dialog.findViewById(R.id.image);
+		image.setImageResource(R.drawable.perfcoach_banner);
+		Button but = (Button) dialog.findViewById(R.id.helpDismissButton);
 		dialog.show();
 		but.setOnClickListener(new OnClickListener() {
 			// @Override
