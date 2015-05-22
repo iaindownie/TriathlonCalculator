@@ -424,8 +424,10 @@ public class PaceMilesFrag extends Fragment implements View.OnClickListener {
 		else if (preset == 4)
 			return "10";
 		else if (preset == 5)
-			return "5";
+			return "6.2137";
 		else if (preset == 6)
+			return "5";
+		else if (preset == 7)
 			return "3.10685";
 		else
 			return "";
