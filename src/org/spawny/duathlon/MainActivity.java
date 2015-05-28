@@ -3,9 +3,11 @@ package org.spawny.duathlon;
 import java.util.Locale;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -126,7 +128,16 @@ public class MainActivity extends ActionBarActivity implements
 		spawny.append("This is a Spawny App\nby Iain Downie!");
 		text.setText(spawny.toString());
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
-		image.setImageResource(R.drawable.runningman48);
+		image.setImageResource(R.drawable.perfcoach_banner);
+		image.setOnClickListener(new View.OnClickListener(){
+		    public void onClick(View v){
+		        Intent intent = new Intent();
+		        intent.setAction(Intent.ACTION_VIEW);
+		        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+		        intent.setData(Uri.parse("http://www.performancecoaching.me/"));
+		        startActivity(intent);
+		    }
+		});
 		Button but = (Button) dialog.findViewById(R.id.dismissButton);
 		dialog.show();
 		but.setOnClickListener(new OnClickListener() {
@@ -145,6 +156,15 @@ public class MainActivity extends ActionBarActivity implements
 		dialog.setTitle("Instructions");
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.perfcoach_banner);
+		image.setOnClickListener(new View.OnClickListener(){
+		    public void onClick(View v){
+		        Intent intent = new Intent();
+		        intent.setAction(Intent.ACTION_VIEW);
+		        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+		        intent.setData(Uri.parse("http://www.performancecoaching.me/"));
+		        startActivity(intent);
+		    }
+		});
 		Button but = (Button) dialog.findViewById(R.id.helpDismissButton);
 		dialog.show();
 		but.setOnClickListener(new OnClickListener() {

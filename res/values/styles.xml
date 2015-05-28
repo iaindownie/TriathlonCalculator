@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -15,5 +15,23 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme"></style>
+
+    <style name="PrimaryLabelStyle" parent="SecondaryLabelStyle">
+        <item name="android:width">90dp</item>
+    </style>
+
+    <style name="SecondaryLabelStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">8pt</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="BannerStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
 
 </resources>

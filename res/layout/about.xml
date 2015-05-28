@@ -1,42 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical|center_horizontal"
-    android:orientation="vertical"
-    android:stretchColumns="0" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <TableRow>
+    <ImageView
+        android:id="@+id/image"
+        style="@style/BannerStyle" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:padding="10dip" />
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dip" />
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:padding="2dip"
-            android:width="200dip" />
-    </TableRow>
+    <Button
+        android:id="@+id/dismissButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:text="Dismiss" />
 
-    <TableRow android:layout_marginTop="15dip" >
-
-        <ImageView
-            android:id="@+id/image2"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:padding="5dip" />
-
-        <Button
-            android:id="@+id/dismissButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dip"
-            android:layout_marginRight="95dip"
-            android:text="Done" />
-    </TableRow>
-
-</TableLayout>
+</LinearLayout>

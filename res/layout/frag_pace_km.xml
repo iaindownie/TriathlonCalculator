@@ -22,23 +22,18 @@
 
                 <TextView
                     android:id="@+id/Topline01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/PrimaryLabelStyle"
                     android:layout_marginLeft="3dip"
-                    android:text="@string/hourName"
-                    android:width="90dip" />
+                    android:text="@string/hourName" />
 
                 <TextView
                     android:id="@+id/Topline02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/minsName"
-                    android:width="90dip" />
+                    style="@style/PrimaryLabelStyle"
+                    android:text="@string/minsName" />
 
                 <TextView
                     android:id="@+id/Topline03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/PrimaryLabelStyle"
                     android:text="@string/secsName" />
             </LinearLayout>
         </TableRow>
@@ -103,8 +98,7 @@
 
                 <TextView
                     android:id="@+id/Midline1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/SecondaryLabelStyle"
                     android:layout_marginLeft="3dip"
                     android:text="@string/PaceKmDistance" />
             </LinearLayout>
@@ -160,23 +154,18 @@
 
                 <TextView
                     android:id="@+id/bottomline1b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/PrimaryLabelStyle"
                     android:layout_marginLeft="3dip"
-                    android:text="@string/hourName"
-                    android:width="90dip" />
+                    android:text="@string/hourName" />
 
                 <TextView
                     android:id="@+id/bottomline2b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/minsName"
-                    android:width="90dip" />
+                    style="@style/PrimaryLabelStyle"
+                    android:text="@string/minsName" />
 
                 <TextView
                     android:id="@+id/bottomline3b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/PrimaryLabelStyle"
                     android:text="@string/secsName" />
             </LinearLayout>
         </TableRow>
@@ -243,7 +232,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dip"
-                    android:text="@string/clearButtonText" />
+                    android:text="@string/clearButtonText"
+                    android:textSize="12sp" />
             </LinearLayout>
         </TableRow>
 
