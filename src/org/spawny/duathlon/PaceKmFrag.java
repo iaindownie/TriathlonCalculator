@@ -301,7 +301,7 @@ public class PaceKmFrag extends Fragment implements View.OnClickListener {
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Kilometre splits (rounded to seconds)");
 		double pace = (total / dist) / 60;
-		// dist = Math.round(dist / 1.609344);
+		// dist = Math.round(dist / Constants.toKmConversion);
 		for (int i = 0; i < (int) dist; i++) {
 			results.add("Km - " + (i + 1) + ": "
 					+ getGoodTimeValues(pace * (i + 1)));

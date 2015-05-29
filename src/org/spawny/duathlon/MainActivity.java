@@ -121,11 +121,9 @@ public class MainActivity extends ActionBarActivity implements
 		dialog.setTitle("Run/Bike Calculator " + pInfo.versionName);
 		TextView text = (TextView) dialog.findViewById(R.id.text);
 		StringBuffer spawny = new StringBuffer();
-		spawny.append("Simply enter target time and distance to get pace, ");
-		spawny.append("or vary the combinations.\n\nThe mile and kilo ");
-		spawny.append("splits are scrollable, but are subject to rounding ");
-		spawny.append("errors so may be a tiny, tiny bit off...\n\n");
-		spawny.append("This is a Spawny App\nby Iain Downie!");
+		spawny.append("A simple app to help runners and cyclists calculate, ");
+		spawny.append("pace or speed, and make predictions for future events.\n\n");
+		spawny.append("This is a Spawny App by Iain Downie!");
 		text.setText(spawny.toString());
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.perfcoach_banner);

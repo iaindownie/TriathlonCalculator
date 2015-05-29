@@ -2,10 +2,10 @@
 <resources>
 
     <string name="app_name">Run/Bike Calculator</string>
-    <string name="title_section1">Pace (mi)</string>
-    <string name="title_section2">Pace (km)</string>
-    <string name="title_section3">Speed (mi)</string>
-    <string name="title_section4">Speed (km)</string>
+    <string name="title_section1">Run (mi)</string>
+    <string name="title_section2">Run (km)</string>
+    <string name="title_section3">Bike (mi)</string>
+    <string name="title_section4">Bike (km)</string>
     <string name="hello_world">Hello world!</string>
     <string name="about">About</string>
     <string name="instructions">Help</string>
@@ -13,11 +13,14 @@
     <string name="hourName">Hour</string>
     <string name="minsName">Mins</string>
     <string name="secsName">Secs</string>
+    <string name="milesSpeedName">Speed (mph)</string>
+    <string name="kmSpeedName">Speed (kph)</string>
     <string name="PaceMilesDistance">Enter distance - miles</string>
     <string name="PaceKmDistance">Enter distance - kilometres</string>
     <string name="calcTimeButton">Get Time</string>
     <string name="calcDistButton">Get Dist</string>
     <string name="calcPaceButton">Get Pace</string>
+    <string name="calcSpeedButton">Get Speed</string>
     <string name="dist_prompt">Choose a measure</string>
 	<string name="Presets">Presets</string>
 	<string name="clearButtonText">Clear fields</string>
@@ -28,5 +31,6 @@
 	<color name="darkGrey">#5A5A5A</color>
 	<color name="darkGrey2">#6E6F6F</color>
 	<color name="lightGreen">#CCCC99</color>
+	<color name="lightOrange">#FF9933</color>
 	
 </resources>

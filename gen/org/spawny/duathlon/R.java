@@ -19,6 +19,8 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040007;
     }
     public static final class array {
+        public static final int bikeimperial=0x7f0c0002;
+        public static final int bikemetric=0x7f0c0003;
         public static final int imperial=0x7f0c0000;
         public static final int metric=0x7f0c0001;
     }
@@ -1382,19 +1384,19 @@ containing a value of this type.
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f050003;
     }
     public static final class color {
-        public static final int abc_background_cache_hint_selector_material_dark=0x7f060037;
-        public static final int abc_background_cache_hint_selector_material_light=0x7f060038;
+        public static final int abc_background_cache_hint_selector_material_dark=0x7f060038;
+        public static final int abc_background_cache_hint_selector_material_light=0x7f060039;
         public static final int abc_input_method_navigation_guard=0x7f060003;
-        public static final int abc_primary_text_disable_only_material_dark=0x7f060039;
-        public static final int abc_primary_text_disable_only_material_light=0x7f06003a;
-        public static final int abc_primary_text_material_dark=0x7f06003b;
-        public static final int abc_primary_text_material_light=0x7f06003c;
-        public static final int abc_search_url_text=0x7f06003d;
+        public static final int abc_primary_text_disable_only_material_dark=0x7f06003a;
+        public static final int abc_primary_text_disable_only_material_light=0x7f06003b;
+        public static final int abc_primary_text_material_dark=0x7f06003c;
+        public static final int abc_primary_text_material_light=0x7f06003d;
+        public static final int abc_search_url_text=0x7f06003e;
         public static final int abc_search_url_text_normal=0x7f060000;
         public static final int abc_search_url_text_pressed=0x7f060002;
         public static final int abc_search_url_text_selected=0x7f060001;
-        public static final int abc_secondary_text_material_dark=0x7f06003e;
-        public static final int abc_secondary_text_material_light=0x7f06003f;
+        public static final int abc_secondary_text_material_dark=0x7f06003f;
+        public static final int abc_secondary_text_material_light=0x7f060040;
         public static final int accent_material_dark=0x7f06000f;
         public static final int accent_material_light=0x7f06000e;
         public static final int background_floating_material_dark=0x7f060006;
@@ -1429,6 +1431,7 @@ containing a value of this type.
         public static final int hint_foreground_material_dark=0x7f06001e;
         public static final int hint_foreground_material_light=0x7f06001f;
         public static final int lightGreen=0x7f060036;
+        public static final int lightOrange=0x7f060037;
         public static final int link_text_material_dark=0x7f060022;
         public static final int link_text_material_light=0x7f060023;
         public static final int material_blue_grey_800=0x7f06002e;
@@ -1688,6 +1691,8 @@ containing a value of this type.
         public static final int PaceKmListView01=0x7f090067;
         public static final int PaceMilesLinearLayout=0x7f090068;
         public static final int PaceMilesListView01=0x7f09006a;
+        public static final int SpeedKmListView01=0x7f09006c;
+        public static final int SpeedMilesListView01=0x7f09006d;
         public static final int SpinnerImperial=0x7f090069;
         public static final int SpinnerMetric=0x7f090055;
         public static final int TableLayout01=0x7f090043;
@@ -1701,7 +1706,7 @@ containing a value of this type.
         public static final int Topline01=0x7f090046;
         public static final int Topline02=0x7f090047;
         public static final int Topline03=0x7f090048;
-        public static final int about=0x7f09006f;
+        public static final int about=0x7f090071;
         public static final int action_bar=0x7f090031;
         public static final int action_bar_activity_content=0x7f090003;
         public static final int action_bar_container=0x7f090030;
@@ -1733,15 +1738,16 @@ containing a value of this type.
         public static final int end=0x7f09001c;
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
-        public static final int helpDismissButton=0x7f09006e;
-        public static final int helptextContent1=0x7f09006c;
-        public static final int helptextContent2=0x7f09006d;
+        public static final int filler=0x7f09006b;
+        public static final int helpDismissButton=0x7f090070;
+        public static final int helptextContent1=0x7f09006e;
+        public static final int helptextContent2=0x7f09006f;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000e;
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
-        public static final int instructions=0x7f090070;
+        public static final int instructions=0x7f090072;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
         public static final int middle=0x7f09001d;
@@ -1762,7 +1768,6 @@ containing a value of this type.
         public static final int search_plate=0x7f090039;
         public static final int search_src_text=0x7f09003a;
         public static final int search_voice_btn=0x7f09003e;
-        public static final int section_label=0x7f09006b;
         public static final int shortcut=0x7f09002a;
         public static final int showCustom=0x7f090010;
         public static final int showHome=0x7f090011;
@@ -1842,9 +1847,9 @@ containing a value of this type.
         public static final int main=0x7f0d0000;
     }
     public static final class string {
-        public static final int PaceKmDistance=0x7f0a001c;
-        public static final int PaceMilesDistance=0x7f0a001b;
-        public static final int Presets=0x7f0a0021;
+        public static final int PaceKmDistance=0x7f0a001e;
+        public static final int PaceMilesDistance=0x7f0a001d;
+        public static final int Presets=0x7f0a0024;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1903,14 +1908,17 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         public static final int about=0x7f0a0016;
         public static final int app_name=0x7f0a0010;
-        public static final int calcDistButton=0x7f0a001e;
-        public static final int calcPaceButton=0x7f0a001f;
-        public static final int calcTimeButton=0x7f0a001d;
-        public static final int clearButtonText=0x7f0a0022;
-        public static final int dist_prompt=0x7f0a0020;
+        public static final int calcDistButton=0x7f0a0020;
+        public static final int calcPaceButton=0x7f0a0021;
+        public static final int calcSpeedButton=0x7f0a0022;
+        public static final int calcTimeButton=0x7f0a001f;
+        public static final int clearButtonText=0x7f0a0025;
+        public static final int dist_prompt=0x7f0a0023;
         public static final int hello_world=0x7f0a0015;
         public static final int hourName=0x7f0a0018;
         public static final int instructions=0x7f0a0017;
+        public static final int kmSpeedName=0x7f0a001c;
+        public static final int milesSpeedName=0x7f0a001b;
         public static final int minsName=0x7f0a0019;
         public static final int secsName=0x7f0a001a;
         public static final int title_section1=0x7f0a0011;

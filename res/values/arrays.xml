@@ -21,5 +21,20 @@
         <item>5 km (Parkrun)</item>
     </string-array>
     
+    <string-array name="bikeimperial">
+        <item>Select distance</item>
+        <item>Ironman (112miles)</item>
+        <item>Century (100miles)</item>
+        <item>1/2 Ironman (56miles)</item>
+        <item>Olympic Tri (24.85miles)</item>
+    </string-array>
+    
+    <string-array name="bikemetric">
+        <item>Select distance</item>
+        <item>Ironman (180km)</item>
+        <item>Century (160km)</item>
+        <item>1/2 Ironman (90km)</item>
+        <item>Olympic Tri (40km)</item>
+    </string-array>
     
 </resources>
