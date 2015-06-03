@@ -3,17 +3,15 @@ package org.spawny.duathlon;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +19,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class SpeedKmFrag extends Fragment implements View.OnClickListener {
 
@@ -61,12 +58,7 @@ public class SpeedKmFrag extends Fragment implements View.OnClickListener {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.frag_speed_km, container,
 				false);
-		
-		SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = prefs.edit().putInt("tabPref", 3);
-	    editor.apply();
-	    System.out.println("TabPref Set 3:" + prefs.getInt("tabPref",9));
-		
+
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);
@@ -268,14 +260,15 @@ public class SpeedKmFrag extends Fragment implements View.OnClickListener {
 		lv = (ListView) getActivity().findViewById(R.id.SpeedKmListView01);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Conversion summary");
+		results.add(Constants.twoDecPoints.format(Constants.round(dist, 2))
+				+ " kilometers at " + Constants.twoDecPoints.format(speed)
+				+ " kph");
 		results.add(Constants.twoDecPoints.format(Constants.round(
-				dist, 2))
-				+ " kilometers at "
+				(dist / Constants.toKmConversion), 2))
+				+ " miles at "
 				+ Constants.twoDecPoints
-						.format(speed) + " kph");
-		results.add(Constants.twoDecPoints.format(Constants.round((dist / Constants.toKmConversion), 2))
-				+ " miles at " + Constants.twoDecPoints.format((speed / Constants.toKmConversion)) + " mph");
-		
+						.format((speed / Constants.toKmConversion)) + " mph");
+
 		System.out.println("Results:" + results.toString());
 		String[] splits = results.toArray(new String[results.size()]);
 		ListAdapter list = (ListAdapter) (new ArrayAdapter<String>(

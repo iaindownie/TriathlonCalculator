@@ -3,10 +3,7 @@ package org.spawny.duathlon;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,12 +60,7 @@ public class PaceKmFrag extends Fragment implements View.OnClickListener {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.frag_pace_km, container,
 				false);
-		
-		SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = prefs.edit().putInt("tabPref", 1);
-	    editor.apply();
-	    System.out.println("TabPref Set 1:" + prefs.getInt("tabPref",9));
-	    
+
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);
@@ -288,8 +280,7 @@ public class PaceKmFrag extends Fragment implements View.OnClickListener {
 			text3a.setText("");
 			text3b.setText("");
 			text3c.setText("");
-			lv = (ListView) getActivity()
-					.findViewById(R.id.PaceKmListView01);
+			lv = (ListView) getActivity().findViewById(R.id.PaceKmListView01);
 			lv.setAdapter(null);
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
@@ -318,8 +309,8 @@ public class PaceKmFrag extends Fragment implements View.OnClickListener {
 		results.add("Last split - " + dist + ":  "
 				+ getGoodTimeEndValues(total));
 		String[] splits = results.toArray(new String[results.size()]);
-		ListAdapter birds = (ListAdapter) (new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, splits));
+		ListAdapter birds = (ListAdapter) (new ArrayAdapter<String>(
+				getActivity(), android.R.layout.simple_list_item_1, splits));
 		lv.setAdapter(birds);
 		lv.setTextFilterEnabled(true);
 
@@ -385,7 +376,8 @@ public class PaceKmFrag extends Fragment implements View.OnClickListener {
 		double total = totalSecs / dist;
 		int tHours = (int) (total / 60 / 60);
 		int tMins = (int) ((total / 60) - (tHours * 60));
-		Double tSecs = Double.valueOf((total - ((tHours * 60 * 60) + (tMins * 60))));
+		Double tSecs = Double
+				.valueOf((total - ((tHours * 60 * 60) + (tMins * 60))));
 		if (!tSecs.isNaN()) {
 			// if(dist!=null)
 			this.setSplits(dist.doubleValue(), totalSecs);

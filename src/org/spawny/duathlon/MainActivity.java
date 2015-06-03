@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
 
@@ -46,20 +47,21 @@ public class MainActivity extends ActionBarActivity implements
 	private PackageInfo pInfo = null;
 	private Dialog dialog;
 	Integer tabPref;
+	SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+
+		prefs = getPreferences(Context.MODE_PRIVATE);
 		tabPref = prefs.getInt("tabPref", 99);
 		System.out.println("TabPref Get in MainActivity:" + tabPref);
-		
+
 		// Set up the action bar.
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		
+
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -68,7 +70,6 @@ public class MainActivity extends ActionBarActivity implements
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		mViewPager.setCurrentItem(tabPref, false);
 
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
@@ -78,6 +79,9 @@ public class MainActivity extends ActionBarActivity implements
 					@Override
 					public void onPageSelected(int position) {
 						actionBar.setSelectedNavigationItem(position);
+						SharedPreferences.Editor editor = prefs.edit().putInt(
+								"tabPref", position);
+						editor.apply();
 					}
 				});
 
@@ -91,8 +95,8 @@ public class MainActivity extends ActionBarActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
-		
-		
+		mViewPager.setCurrentItem(tabPref, false);
+
 	}
 
 	@Override
@@ -118,7 +122,7 @@ public class MainActivity extends ActionBarActivity implements
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private void doAboutDialog() {
 		try {
 			pInfo = getPackageManager().getPackageInfo("org.spawny.duathlon",
@@ -138,14 +142,14 @@ public class MainActivity extends ActionBarActivity implements
 		text.setText(spawny.toString());
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.perfcoach_banner);
-		image.setOnClickListener(new View.OnClickListener(){
-		    public void onClick(View v){
-		        Intent intent = new Intent();
-		        intent.setAction(Intent.ACTION_VIEW);
-		        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-		        intent.setData(Uri.parse("http://www.performancecoaching.me/"));
-		        startActivity(intent);
-		    }
+		image.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setAction(Intent.ACTION_VIEW);
+				intent.addCategory(Intent.CATEGORY_BROWSABLE);
+				intent.setData(Uri.parse("http://www.performancecoaching.me/"));
+				startActivity(intent);
+			}
 		});
 		Button but = (Button) dialog.findViewById(R.id.dismissButton);
 		dialog.show();
@@ -156,23 +160,22 @@ public class MainActivity extends ActionBarActivity implements
 			}
 		});
 	}
-	
-	
+
 	private void doHelpDialog() {
-		
+
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.instructions);
 		dialog.setTitle("Instructions");
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.perfcoach_banner);
-		image.setOnClickListener(new View.OnClickListener(){
-		    public void onClick(View v){
-		        Intent intent = new Intent();
-		        intent.setAction(Intent.ACTION_VIEW);
-		        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-		        intent.setData(Uri.parse("http://www.performancecoaching.me/"));
-		        startActivity(intent);
-		    }
+		image.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setAction(Intent.ACTION_VIEW);
+				intent.addCategory(Intent.CATEGORY_BROWSABLE);
+				intent.setData(Uri.parse("http://www.performancecoaching.me/"));
+				startActivity(intent);
+			}
 		});
 		Button but = (Button) dialog.findViewById(R.id.helpDismissButton);
 		dialog.show();

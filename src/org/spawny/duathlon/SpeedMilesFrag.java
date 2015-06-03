@@ -1,21 +1,17 @@
 package org.spawny.duathlon;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +19,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 
@@ -64,12 +59,7 @@ public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.frag_speed_miles, container,
 				false);
-		
-		SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = prefs.edit().putInt("tabPref", 2);
-	    editor.apply();
-	    System.out.println("TabPref Set 2:" + prefs.getInt("tabPref",9));
-	    
+
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);

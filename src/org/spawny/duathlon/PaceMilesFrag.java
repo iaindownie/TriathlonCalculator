@@ -3,10 +3,7 @@ package org.spawny.duathlon;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,13 +60,7 @@ public class PaceMilesFrag extends Fragment implements View.OnClickListener {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.frag_pace_miles, container,
 				false);
-		
-		SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-		//SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = prefs.edit().putInt("tabPref", 0);
-	    editor.apply();
-	    System.out.println("TabPref Set 0:" + prefs.getInt("tabPref",9));
-		
+
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);
