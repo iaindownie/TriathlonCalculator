@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
+public class FragBike extends Fragment implements View.OnClickListener {
 
 	private EditText text1a;
 	private EditText text1b;
@@ -43,21 +43,21 @@ public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static SpeedMilesFrag newInstance(int sectionNumber) {
-		SpeedMilesFrag fragment = new SpeedMilesFrag();
+	public static FragBike newInstance(int sectionNumber) {
+		FragBike fragment = new FragBike();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public SpeedMilesFrag() {
+	public FragBike() {
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.frag_speed_miles, container,
+		View rootView = inflater.inflate(R.layout.frag_bike, container,
 				false);
 
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
@@ -69,7 +69,7 @@ public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 		text1a.setWidth(10);
 		text1b.setWidth(10);
 		text1c.setWidth(10);
-		lv = (ListView) rootView.findViewById(R.id.SpeedMilesListView01);
+		lv = (ListView) rootView.findViewById(R.id.ListViewBike);
 		clearButton = (Button) rootView.findViewById(R.id.ClearButton);
 		clearButton.setTextColor(getResources().getColor(R.color.darkGrey));
 		clearButton.setOnClickListener(this);
@@ -80,9 +80,9 @@ public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 		paceButton = (Button) rootView.findViewById(R.id.Button03);
 		paceButton.setOnClickListener(this);
 
-		s = (Spinner) rootView.findViewById(R.id.SpinnerImperial);
+		s = (Spinner) rootView.findViewById(R.id.spinnerbike);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				getActivity(), R.array.bikeimperial,
+				getActivity(), R.array.metricBike,
 				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
@@ -239,8 +239,7 @@ public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 			text2.setText("");
 			s.setSelection(0);
 			text3a.setText("");
-			lv = (ListView) getActivity().findViewById(
-					R.id.SpeedMilesListView01);
+			lv = (ListView) getActivity().findViewById(R.id.ListViewBike);
 			lv.setAdapter(null);
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
@@ -258,7 +257,7 @@ public class SpeedMilesFrag extends Fragment implements View.OnClickListener {
 
 	public void setSplits(double speed, double dist) {
 		System.out.println("Speed:" + speed + " Dist: " + dist);
-		lv = (ListView) getActivity().findViewById(R.id.SpeedMilesListView01);
+		lv = (ListView) getActivity().findViewById(R.id.ListViewBike);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Conversion summary");
 		results.add(Constants.twoDecPoints.format(Constants.round(dist, 2))

@@ -13,7 +13,7 @@
             android:id="@+id/TableRow01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/lightGreen" >
+            android:background="@color/lightOrange" >
 
             <LinearLayout
                 android:id="@+id/LinearLayout02"
@@ -22,20 +22,26 @@
 
                 <TextView
                     android:id="@+id/Topline01"
-                    android:text="@string/hourName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="3dip"
-                    style="@style/PrimaryLabelStyle" />
+                    android:text="Option >>" />
 
-                <TextView
-                    android:id="@+id/Topline02"
-                    style="@style/PrimaryLabelStyle"
-                    android:text="@string/minsName"
-                     />
+                <Button
+                    android:id="@+id/ButtMetric"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Metric"
+                    android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/Topline03"
-                    style="@style/PrimaryLabelStyle"
-                    android:text="@string/secsName" />
+                <Button
+                    android:id="@+id/ButtImperial"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Imperial"
+                    android:textSize="12sp" />
             </LinearLayout>
         </TableRow>
 
@@ -90,7 +96,7 @@
             android:id="@+id/TableRow03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/lightGreen" >
+            android:background="@color/lightOrange" >
 
             <LinearLayout
                 android:id="@+id/LinearLayout04"
@@ -124,7 +130,7 @@
                     android:width="100dip" />
 
                 <Spinner
-                    android:id="@+id/SpinnerImperial"
+                    android:id="@+id/spinnerbike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -146,7 +152,7 @@
             android:id="@+id/PTableRow05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/lightGreen" >
+            android:background="@color/lightOrange" >
 
             <LinearLayout
                 android:id="@+id/LinearLayout06"
@@ -155,21 +161,9 @@
 
                 <TextView
                     android:id="@+id/bottomline1b"
-                    style="@style/PrimaryLabelStyle"
+                    style="@style/SecondaryLabelStyle"
                     android:layout_marginLeft="3dip"
-                    android:text="@string/hourName"
-                    />
-
-                <TextView
-                    android:id="@+id/bottomline2b"
-                    style="@style/PrimaryLabelStyle"
-                    android:text="@string/minsName"
-                     />
-
-                <TextView
-                    android:id="@+id/bottomline3b"
-                    style="@style/PrimaryLabelStyle"
-                    android:text="@string/secsName" />
+                    android:text="@string/milesSpeedName" />
             </LinearLayout>
         </TableRow>
 
@@ -185,38 +179,29 @@
 
                 <EditText
                     android:id="@+id/EditText03a"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/EditText03b"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/EditText03c"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="numberDecimal"
-                    android:maxLength="6"
-                    android:text="" />
+                    android:maxLength="7"
+                    android:text=""
+                    android:width="100dip" />
+
+                <TextView
+                    android:id="@+id/filler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" 
+                    android:width="100dip"/>
 
                 <Button
                     android:id="@+id/Button03"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:text="@string/calcPaceButton"
-                    android:textSize="12sp" />
+                    android:text="@string/calcSpeedButton"
+                    android:textSize="12sp"
+                    android:width="100dip" />
             </LinearLayout>
         </TableRow>
 
@@ -235,8 +220,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dip"
-                    android:textSize="12sp" 
-                    android:text="@string/clearButtonText" />
+                    android:text="@string/clearButtonText"
+                    android:textSize="12sp" />
             </LinearLayout>
         </TableRow>
 
@@ -252,7 +237,7 @@
                 android:baselineAligned="false" >
 
                 <ListView
-                    android:id="@+id/PaceMilesListView01"
+                    android:id="@+id/ListViewBike"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />

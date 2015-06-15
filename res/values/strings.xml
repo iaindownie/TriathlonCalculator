@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Run/Bike Calculator</string>
-    <string name="title_section1">Run (mi)</string>
-    <string name="title_section2">Run (km)</string>
-    <string name="title_section3">Bike (mi)</string>
+    <string name="app_name">Pace Calculator</string>
+    <string name="title_section1">Run</string>
+    <string name="title_section2">Bike</string>
+    <string name="title_section3">Swim</string>
     <string name="title_section4">Bike (km)</string>
     <string name="hello_world">Hello world!</string>
     <string name="about">About</string>

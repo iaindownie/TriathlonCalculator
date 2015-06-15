@@ -19,10 +19,12 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040007;
     }
     public static final class array {
-        public static final int bikeimperial=0x7f0c0002;
-        public static final int bikemetric=0x7f0c0003;
-        public static final int imperial=0x7f0c0000;
-        public static final int metric=0x7f0c0001;
+        public static final int imperialBike=0x7f0c0002;
+        public static final int imperialRun=0x7f0c0000;
+        public static final int imperialSwim=0x7f0c0004;
+        public static final int metricBike=0x7f0c0003;
+        public static final int metricRun=0x7f0c0001;
+        public static final int metricSwim=0x7f0c0005;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1666,47 +1668,49 @@ containing a value of this type.
         public static final int runningman48=0x7f02003a;
     }
     public static final class id {
+        public static final int ButtImperial=0x7f090048;
+        public static final int ButtMetric=0x7f090047;
         public static final int Button01=0x7f09004e;
         public static final int Button02=0x7f090056;
-        public static final int Button03=0x7f090061;
-        public static final int ClearButton=0x7f090064;
+        public static final int Button03=0x7f09005e;
+        public static final int ClearButton=0x7f090061;
         public static final int EditText01a=0x7f09004b;
         public static final int EditText01b=0x7f09004c;
         public static final int EditText01c=0x7f09004d;
         public static final int EditText02=0x7f090054;
-        public static final int EditText03a=0x7f09005e;
-        public static final int EditText03b=0x7f09005f;
-        public static final int EditText03c=0x7f090060;
+        public static final int EditText03a=0x7f09005c;
+        public static final int EditText03b=0x7f09006b;
+        public static final int EditText03c=0x7f09006c;
         public static final int LinearLayout02=0x7f090045;
         public static final int LinearLayout03=0x7f09004a;
         public static final int LinearLayout04=0x7f090050;
         public static final int LinearLayout05=0x7f090053;
         public static final int LinearLayout06=0x7f090058;
-        public static final int LinearLayout07=0x7f09005d;
-        public static final int LinearLayout08=0x7f090063;
-        public static final int LinearLayout09=0x7f090066;
+        public static final int LinearLayout07=0x7f09005b;
+        public static final int LinearLayout08=0x7f090060;
+        public static final int LinearLayout09=0x7f090063;
+        public static final int ListViewBike=0x7f090064;
+        public static final int ListViewRun=0x7f090070;
+        public static final int ListViewSwim=0x7f090073;
         public static final int Midline1=0x7f090051;
         public static final int PTableRow05=0x7f090057;
-        public static final int PaceKmLinearLayout=0x7f090042;
-        public static final int PaceKmListView01=0x7f090067;
-        public static final int PaceMilesLinearLayout=0x7f090068;
-        public static final int PaceMilesListView01=0x7f09006a;
-        public static final int SpeedKmListView01=0x7f09006c;
-        public static final int SpeedMilesListView01=0x7f09006d;
-        public static final int SpinnerImperial=0x7f090069;
-        public static final int SpinnerMetric=0x7f090055;
+        public static final int PaceKmLinearLayout=0x7f090065;
+        public static final int PaceKmListView01=0x7f09006d;
+        public static final int PaceMilesLinearLayout=0x7f090042;
+        public static final int SpeedKmListView01=0x7f090071;
+        public static final int SpinnerMetric=0x7f090068;
         public static final int TableLayout01=0x7f090043;
         public static final int TableRow01=0x7f090044;
         public static final int TableRow02=0x7f090049;
         public static final int TableRow03=0x7f09004f;
         public static final int TableRow04=0x7f090052;
-        public static final int TableRow06=0x7f09005c;
-        public static final int TableRow07=0x7f090062;
-        public static final int TableRow08=0x7f090065;
+        public static final int TableRow06=0x7f09005a;
+        public static final int TableRow07=0x7f09005f;
+        public static final int TableRow08=0x7f090062;
         public static final int Topline01=0x7f090046;
-        public static final int Topline02=0x7f090047;
-        public static final int Topline03=0x7f090048;
-        public static final int about=0x7f090071;
+        public static final int Topline02=0x7f090066;
+        public static final int Topline03=0x7f090067;
+        public static final int about=0x7f090077;
         public static final int action_bar=0x7f090031;
         public static final int action_bar_activity_content=0x7f090003;
         public static final int action_bar_container=0x7f090030;
@@ -1724,8 +1728,8 @@ containing a value of this type.
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
         public static final int bottomline1b=0x7f090059;
-        public static final int bottomline2b=0x7f09005a;
-        public static final int bottomline3b=0x7f09005b;
+        public static final int bottomline2b=0x7f090069;
+        public static final int bottomline3b=0x7f09006a;
         public static final int checkbox=0x7f090029;
         public static final int collapseActionView=0x7f090015;
         public static final int decor_content_parent=0x7f09002f;
@@ -1738,16 +1742,16 @@ containing a value of this type.
         public static final int end=0x7f09001c;
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
-        public static final int filler=0x7f09006b;
-        public static final int helpDismissButton=0x7f090070;
-        public static final int helptextContent1=0x7f09006e;
-        public static final int helptextContent2=0x7f09006f;
+        public static final int filler=0x7f09005d;
+        public static final int helpDismissButton=0x7f090076;
+        public static final int helptextContent1=0x7f090074;
+        public static final int helptextContent2=0x7f090075;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000e;
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
-        public static final int instructions=0x7f090072;
+        public static final int instructions=0x7f090078;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
         public static final int middle=0x7f09001d;
@@ -1772,11 +1776,15 @@ containing a value of this type.
         public static final int showCustom=0x7f090010;
         public static final int showHome=0x7f090011;
         public static final int showTitle=0x7f090012;
+        public static final int spinnerbike=0x7f090055;
+        public static final int spinnerrun=0x7f09006f;
+        public static final int spinnerswim=0x7f090072;
         public static final int split_action_bar=0x7f090004;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
         public static final int text=0x7f09003f;
         public static final int title=0x7f090027;
+        public static final int togglebutton=0x7f09006e;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
         public static final int withText=0x7f090018;
@@ -1836,12 +1844,13 @@ containing a value of this type.
         public static final int abc_simple_dropdown_hint=0x7f030015;
         public static final int about=0x7f030016;
         public static final int activity_main=0x7f030017;
-        public static final int frag_pace_km=0x7f030018;
-        public static final int frag_pace_miles=0x7f030019;
-        public static final int frag_speed_km=0x7f03001a;
-        public static final int frag_speed_miles=0x7f03001b;
-        public static final int instructions=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int frag_bike=0x7f030018;
+        public static final int frag_pace_km=0x7f030019;
+        public static final int frag_run=0x7f03001a;
+        public static final int frag_speed_km=0x7f03001b;
+        public static final int frag_swim=0x7f03001c;
+        public static final int instructions=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;

@@ -223,13 +223,11 @@ public class MainActivity extends ActionBarActivity implements
 			// return PlaceholderFragment.newInstance(position + 1);
 			switch (position) {
 			case 0:
-				return PaceMilesFrag.newInstance(position + 1);
+				return FragRun.newInstance(position + 1);
 			case 1:
-				return PaceKmFrag.newInstance(position + 1);
+				return FragBike.newInstance(position + 1);
 			case 2:
-				return SpeedMilesFrag.newInstance(position + 1);
-			case 3:
-				return SpeedKmFrag.newInstance(position + 1);
+				return FragSwim.newInstance(position + 1);
 			}
 			return null;
 		}
@@ -237,7 +235,7 @@ public class MainActivity extends ActionBarActivity implements
 		@Override
 		public int getCount() {
 			// Show 4 total pages.
-			return 4;
+			return 3;
 		}
 
 		@Override
@@ -250,8 +248,6 @@ public class MainActivity extends ActionBarActivity implements
 				return getString(R.string.title_section2).toUpperCase(l);
 			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
-			case 3:
-				return getString(R.string.title_section4).toUpperCase(l);
 			}
 			return null;
 		}
