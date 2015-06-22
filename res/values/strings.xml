@@ -32,5 +32,6 @@
 	<color name="darkGrey2">#6E6F6F</color>
 	<color name="lightGreen">#CCCC99</color>
 	<color name="lightOrange">#FF9933</color>
+	<color name="lightBlue">#3399CC</color>
 	
 </resources>

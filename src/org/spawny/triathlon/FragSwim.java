@@ -1,10 +1,13 @@
-package org.spawny.duathlon;
+package org.spawny.triathlon;
 
 import java.util.ArrayList;
+
+import org.spawny.duathlon.R;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -22,13 +25,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class FragRun extends Fragment implements View.OnClickListener {
+public class FragSwim extends Fragment implements View.OnClickListener {
 
 	private EditText text1a;
 	private EditText text1b;
 	private EditText text1c;
 	private EditText text2;
-	private EditText text3a;
 	private EditText text3b;
 	private EditText text3c;
 	private Spinner s;
@@ -38,12 +40,12 @@ public class FragRun extends Fragment implements View.OnClickListener {
 	private Button timeButton;
 	private Button distanceButton;
 	private Button paceButton;
-	// private Button buttMetric;
-	// private Button buttImperial;
 	private ToggleButton toggle;
 
 	private TextView theFocus;
+	private TextView filler3swim;
 	private boolean isMetric;
+
 	/**
 	 * The fragment argument representing the section number for this fragment.
 	 */
@@ -52,34 +54,35 @@ public class FragRun extends Fragment implements View.OnClickListener {
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static FragRun newInstance(int sectionNumber) {
-		FragRun fragment = new FragRun();
+	public static FragSwim newInstance(int sectionNumber) {
+		FragSwim fragment = new FragSwim();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public FragRun() {
+	public FragSwim() {
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.frag_run, container, false);
+		View rootView = inflater.inflate(R.layout.frag_swim, container, false);
 
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);
+		text1b.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59")});
 		text1c = (EditText) rootView.findViewById(R.id.EditText01c);
+		text1c.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59")});
 		text2 = (EditText) rootView.findViewById(R.id.EditText02);
-		text3a = (EditText) rootView.findViewById(R.id.EditText03a);
 		text3b = (EditText) rootView.findViewById(R.id.EditText03b);
 		text3c = (EditText) rootView.findViewById(R.id.EditText03c);
 		text1a.setWidth(10);
 		text1b.setWidth(10);
 		text1c.setWidth(10);
-		lv = (ListView) rootView.findViewById(R.id.ListViewRun);
+		lv = (ListView) rootView.findViewById(R.id.ListViewSwim);
 		clearButton = (Button) rootView.findViewById(R.id.ClearButton);
 		clearButton.setTextColor(getResources().getColor(R.color.darkGrey));
 		clearButton.setOnClickListener(this);
@@ -89,15 +92,12 @@ public class FragRun extends Fragment implements View.OnClickListener {
 		distanceButton.setOnClickListener(this);
 		paceButton = (Button) rootView.findViewById(R.id.Button03);
 		paceButton.setOnClickListener(this);
+		filler3swim = (TextView) rootView.findViewById(R.id.filler3swim);
+		filler3swim.setText("/100m");
 
-		// buttMetric = (Button) rootView.findViewById(R.id.ButtMetric);
-		// buttMetric.setOnClickListener(this);
-		// buttImperial = (Button) rootView.findViewById(R.id.ButtImperial);
-		// buttImperial.setOnClickListener(this);
-
-		s = (Spinner) rootView.findViewById(R.id.spinnerrun);
+		s = (Spinner) rootView.findViewById(R.id.spinnerswim);
 		adapter = ArrayAdapter.createFromResource(getActivity(),
-				R.array.metricRun, android.R.layout.simple_spinner_item);
+				R.array.metricSwim, android.R.layout.simple_spinner_item);
 		isMetric = true;
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
@@ -130,9 +130,10 @@ public class FragRun extends Fragment implements View.OnClickListener {
 					boolean isChecked) {
 				if (isChecked) {
 					// The toggle is enabled
-					text2.setHint("kms");
+					text2.setHint("metres");
+					filler3swim.setText("/100m");
 					adapter = ArrayAdapter.createFromResource(getActivity(),
-							R.array.metricRun,
+							R.array.metricSwim,
 							android.R.layout.simple_spinner_item);
 					isMetric = true;
 					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -161,9 +162,10 @@ public class FragRun extends Fragment implements View.OnClickListener {
 					});
 				} else {
 					// The toggle is disabled
-					text2.setHint("miles");
+					text2.setHint("yards");
+					filler3swim.setText("/100yd");
 					adapter = ArrayAdapter.createFromResource(getActivity(),
-							R.array.imperialRun,
+							R.array.imperialSwim,
 							android.R.layout.simple_spinner_item);
 					isMetric = false;
 					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -234,16 +236,7 @@ public class FragRun extends Fragment implements View.OnClickListener {
 				}
 			}
 		});
-		text3a.setOnFocusChangeListener(new OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (hasFocus) {
-					paceButton.setEnabled(false);
-				} else {
-					paceButton.setEnabled(true);
-				}
-			}
-		});
+
 		text3b.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -275,10 +268,6 @@ public class FragRun extends Fragment implements View.OnClickListener {
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		switch (v.getId()) {
 		case R.id.Button01:
-			System.out.println("Called Button01 A " + isMetric);
-			String t3a = text3a.getText().toString();
-			if (t3a == null || t3a.length() == 0)
-				t3a = "0";
 			String t3b = text3b.getText().toString();
 			if (t3b == null || t3b.length() == 0)
 				t3b = "0";
@@ -288,8 +277,7 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			String d2 = text2.getText().toString();
 			if (d2 == null || d2.length() == 0)
 				d2 = "0";
-			String time = getTime(Double.valueOf(d2), Double.valueOf(t3a),
-					Double.valueOf(t3b), Double.valueOf(t3c));
+			String time = getTime(Double.valueOf(d2), Double.valueOf(t3b), Double.valueOf(t3c));
 			text1a.setText(time.substring(0, time.indexOf(":")));
 			text1b.setText(time.substring(time.indexOf(":") + 1,
 					time.lastIndexOf(":")));
@@ -310,17 +298,14 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			String ccc = text1c.getText().toString();
 			if (ccc == null || ccc.length() == 0)
 				ccc = "0";
-			String ddd = text3a.getText().toString();
-			if (ddd == null || ddd.length() == 0)
-				ddd = "0";
 			String eee = text3b.getText().toString();
 			if (eee == null || eee.length() == 0)
 				eee = "0";
 			String fff = text3c.getText().toString();
 			if (fff == null || fff.length() == 0)
 				fff = "0";
-			String dist = getDistance(Double.valueOf(aaa), Double.valueOf(bbb),
-					Double.valueOf(ccc), Double.valueOf(ddd),
+			String dist = getDistance(Double.valueOf(aaa),
+					Double.valueOf(bbb), Double.valueOf(ccc),
 					Double.valueOf(eee), Double.valueOf(fff));
 			text2.setText(dist);
 			timeButton.setEnabled(true);
@@ -344,10 +329,14 @@ public class FragRun extends Fragment implements View.OnClickListener {
 				d3 = "0";
 			String pace = getPace(Double.valueOf(d3), Double.valueOf(t1a),
 					Double.valueOf(t1b), Double.valueOf(t1c));
-			text3a.setText(pace.substring(0, pace.indexOf(":")));
-			text3b.setText(pace.substring(pace.indexOf(":") + 1,
-					pace.lastIndexOf(":")));
-			text3c.setText(pace.substring(pace.lastIndexOf(":") + 1));
+			text3b.setText(pace.substring(0,
+					pace.indexOf(":")));
+			text3c.setText(pace.substring(pace.indexOf(":") + 1));
+			if (isMetric) {
+				filler3swim.setText("/100m");
+			} else {
+				filler3swim.setText("/100yd");
+			}
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
 			paceButton.setEnabled(true);
@@ -361,10 +350,9 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			text1c.setText("");
 			text2.setText("");
 			s.setSelection(0);
-			text3a.setText("");
 			text3b.setText("");
 			text3c.setText("");
-			lv = (ListView) getActivity().findViewById(R.id.ListViewRun);
+			lv = (ListView) getActivity().findViewById(R.id.ListViewSwim);
 			lv.setAdapter(null);
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
@@ -372,32 +360,6 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			this.setTheFocus();
 			imm.hideSoftInputFromWindow(text2.getWindowToken(), 0);
 			break;
-		/*
-		 * case R.id.ButtMetric: break; case R.id.ButtImperial:
-		 * System.out.println("Called ButtImperial A " + isMetric);
-		 * text2.setHint("miles"); adapter =
-		 * ArrayAdapter.createFromResource(getActivity(), R.array.imperialRun,
-		 * android.R.layout.simple_spinner_item); isMetric = false;
-		 * System.out.println("Called ButtImperial B " + isMetric);
-		 * adapter.setDropDownViewResource
-		 * (android.R.layout.simple_spinner_dropdown_item);
-		 * s.setAdapter(adapter); s.setOnItemSelectedListener(new
-		 * OnItemSelectedListener() {
-		 * 
-		 * public void onItemSelected(AdapterView<?> arg0, View arg1, int
-		 * selectedPosition, long arg3) {
-		 * 
-		 * if (selectedPosition == 0) { text2.setText(""); lv.setAdapter(null);
-		 * } else { String str = getPresetDistance(selectedPosition, isMetric);
-		 * text2.setText(str); distanceButton.setEnabled(false);
-		 * text2.setFocusable(true); text2.setFocusableInTouchMode(true);
-		 * text2.requestFocus(); } }
-		 * 
-		 * public void onNothingSelected(AdapterView<?> arg0) { } });
-		 * System.out.println("Called ButtImperial C " + isMetric);
-		 * buttMetric.setTextColor(getResources().getColor( R.color.darkGrey));
-		 * buttMetric.getBackground().setAlpha(100); break;
-		 */
 		}
 	}
 
@@ -407,12 +369,13 @@ public class FragRun extends Fragment implements View.OnClickListener {
 	}
 
 	public void setSplits(double dist, double total) {
-		lv = (ListView) getActivity().findViewById(R.id.ListViewRun);
+		lv = (ListView) getActivity().findViewById(R.id.ListViewSwim);
 		ArrayList<String> results = new ArrayList<String>();
-		results.add("Mile splits (rounded to seconds)");
-		double pace = (total / dist) / 60;
-		for (int i = 0; i < (int) dist; i++) {
-			results.add("Mile - " + (i + 1) + ":  "
+		results.add("Conversion summary");
+		double pace = (total / (dist/100)) / 60;
+		// dist = Math.round(dist / Constants.toKmConversion);
+		for (int i = 0; i < (int) (dist/100); i++) {
+			results.add("Km - " + (i + 1) + ": "
 					+ getGoodTimeValues(pace * (i + 1)));
 		}
 		results.add("Last split - " + dist + ":  "
@@ -460,13 +423,10 @@ public class FragRun extends Fragment implements View.OnClickListener {
 		}
 	}
 
-	private String getTime(Double dist, Double hours, Double mins, Double secs) {
+	private String getTime(Double dist, Double mins, Double secs) {
 		double total = 0.0;
-		if (hours > 0) {
-			total = dist * (((hours * 60) * 60 * mins) + secs);
-		} else {
-			total = dist * ((60 * mins) + secs);
-		}
+		total = (dist/100) * ((60 * mins) + secs);
+		System.out.println("Time: TotalSecs: " + total);
 		int tHours = (int) (total / 60 / 60);
 		int tMins = (int) ((total / 60) - (tHours * 60));
 		double tSecs = (double) (total - ((tHours * 60 * 60) + (tMins * 60)));
@@ -482,37 +442,38 @@ public class FragRun extends Fragment implements View.OnClickListener {
 		} else {
 			totalSecs = (60 * mins) + secs;
 		}
-		double total = totalSecs / dist;
+		double total = totalSecs / (dist / 100);
 		int tHours = (int) (total / 60 / 60);
 		int tMins = (int) ((total / 60) - (tHours * 60));
 		Double tSecs = Double
 				.valueOf((total - ((tHours * 60 * 60) + (tMins * 60))));
 		if (!tSecs.isNaN()) {
+			// if(dist!=null)
 			this.setSplits(dist.doubleValue(), totalSecs);
-			return paddedInt(tHours) + ":" + paddedInt(tMins) + ":"
+			return paddedInt(tMins) + ":"
 					+ tSecs.doubleValue();
 		} else {
-			return "00:00:0.0";
+			return "00:0.0";
 		}
 	}
 
 	private String getDistance(Double hours1, Double mins1, Double secs1,
-			Double hours2, Double mins2, Double secs2) {
+			Double mins2, Double secs2) {
 		double totalSecs1 = 0.0;
 		if (hours1 > 0) {
 			totalSecs1 = (hours1 * 60 * 60) + (60 * mins1) + secs1;
 		} else {
 			totalSecs1 = (60 * mins1) + secs1;
 		}
+		System.out.println("totalSecs1: " + totalSecs1);
 		double totalSecs2 = 0.0;
-		if (hours2 > 0) {
-			totalSecs2 = (hours2 * 60 * 60) + (60 * mins2) + secs2;
-		} else {
-			totalSecs2 = (60 * mins2) + secs2;
-		}
+		totalSecs2 = (60 * mins2) + secs2;
+		System.out.println("totalSecs2: " + totalSecs2);
+		
 		if (totalSecs1 > 0.0 && totalSecs2 > 0.0) {
+			// New code to calculate splits
 			this.setSplits(totalSecs1 / totalSecs2, totalSecs1);
-			return "" + totalSecs1 / totalSecs2;
+			return "" + (int) Math.round(((totalSecs1 / totalSecs2)*100));
 		} else
 			return "0.0";
 	}
@@ -527,32 +488,48 @@ public class FragRun extends Fragment implements View.OnClickListener {
 	private String getPresetDistance(int preset, boolean isMetric) {
 		if (isMetric) {
 			if (preset == 1)
-				return "42.195";
+				return "10000";
 			else if (preset == 2)
-				return "30";
+				return "3800";
 			else if (preset == 3)
-				return "21.0975";
+				return "1900";
 			else if (preset == 4)
-				return "10";
+				return "1500";
 			else if (preset == 5)
-				return "5";
+				return "800";
+			else if (preset == 6)
+				return "400";
+			else if (preset == 7)
+				return "300";
+			else if (preset == 8)
+				return "200";
+			else if (preset == 9)
+				return "100";
+			else if (preset == 10)
+				return "50";
 			else
 				return "";
 		} else {
 			if (preset == 1)
-				return "26.21875";
+				return "10936";
 			else if (preset == 2)
-				return "20";
+				return "4155";
 			else if (preset == 3)
-				return "13.109375";
+				return "2077";
 			else if (preset == 4)
-				return "10";
+				return "1640";
 			else if (preset == 5)
-				return "6.2137";
+				return "875";
 			else if (preset == 6)
-				return "5";
+				return "437";
 			else if (preset == 7)
-				return "3.10685";
+				return "219";
+			else if (preset == 8)
+				return "109";
+			else if (preset == 9)
+				return "100";
+			else if (preset == 10)
+				return "55";
 			else
 				return "";
 		}

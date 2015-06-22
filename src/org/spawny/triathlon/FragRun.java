@@ -1,6 +1,8 @@
-package org.spawny.duathlon;
+package org.spawny.triathlon;
 
 import java.util.ArrayList;
+
+import org.spawny.duathlon.R;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,13 +16,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
-public class FragSwim extends Fragment implements View.OnClickListener {
+public class FragRun extends Fragment implements View.OnClickListener {
 
 	private EditText text1a;
 	private EditText text1b;
@@ -30,13 +34,17 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	private EditText text3b;
 	private EditText text3c;
 	private Spinner s;
+	private ArrayAdapter<CharSequence> adapter;
 	private ListView lv;
 	private Button clearButton;
 	private Button timeButton;
 	private Button distanceButton;
 	private Button paceButton;
-	private TextView theFocus;
 	
+	private ToggleButton toggle;
+
+	private TextView theFocus;
+	private boolean isMetric;
 	/**
 	 * The fragment argument representing the section number for this fragment.
 	 */
@@ -45,22 +53,21 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static FragSwim newInstance(int sectionNumber) {
-		FragSwim fragment = new FragSwim();
+	public static FragRun newInstance(int sectionNumber) {
+		FragRun fragment = new FragRun();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public FragSwim() {
+	public FragRun() {
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.frag_swim, container,
-				false);
+		View rootView = inflater.inflate(R.layout.frag_run, container, false);
 
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
@@ -73,7 +80,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		text1a.setWidth(10);
 		text1b.setWidth(10);
 		text1c.setWidth(10);
-		lv = (ListView) rootView.findViewById(R.id.ListViewSwim);
+		lv = (ListView) rootView.findViewById(R.id.ListViewRun);
 		clearButton = (Button) rootView.findViewById(R.id.ClearButton);
 		clearButton.setTextColor(getResources().getColor(R.color.darkGrey));
 		clearButton.setOnClickListener(this);
@@ -84,10 +91,10 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		paceButton = (Button) rootView.findViewById(R.id.Button03);
 		paceButton.setOnClickListener(this);
 
-		s = (Spinner) rootView.findViewById(R.id.spinnerswim);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				getActivity(), R.array.metricSwim,
-				android.R.layout.simple_spinner_item);
+		s = (Spinner) rootView.findViewById(R.id.spinnerrun);
+		adapter = ArrayAdapter.createFromResource(getActivity(),
+				R.array.metricRun, android.R.layout.simple_spinner_item);
+		isMetric = true;
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
 		s.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -99,7 +106,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 					text2.setText("");
 					lv.setAdapter(null);
 				} else {
-					String str = getPresetDistance(selectedPosition);
+					String str = getPresetDistance(selectedPosition, isMetric);
 					text2.setText(str);
 					distanceButton.setEnabled(false);
 					text2.setFocusable(true);
@@ -109,6 +116,77 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+
+		toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
+		toggle.setChecked(true);
+		toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				if (isChecked) {
+					// The toggle is enabled
+					text2.setHint("kms");
+					adapter = ArrayAdapter.createFromResource(getActivity(),
+							R.array.metricRun,
+							android.R.layout.simple_spinner_item);
+					isMetric = true;
+					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					s.setAdapter(adapter);
+					s.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+						public void onItemSelected(AdapterView<?> arg0,
+								View arg1, int selectedPosition, long arg3) {
+
+							if (selectedPosition == 0) {
+								text2.setText("");
+								lv.setAdapter(null);
+							} else {
+								String str = getPresetDistance(
+										selectedPosition, isMetric);
+								text2.setText(str);
+								distanceButton.setEnabled(false);
+								text2.setFocusable(true);
+								text2.setFocusableInTouchMode(true);
+								text2.requestFocus();
+							}
+						}
+
+						public void onNothingSelected(AdapterView<?> arg0) {
+						}
+					});
+				} else {
+					// The toggle is disabled
+					text2.setHint("miles");
+					adapter = ArrayAdapter.createFromResource(getActivity(),
+							R.array.imperialRun,
+							android.R.layout.simple_spinner_item);
+					isMetric = false;
+					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					s.setAdapter(adapter);
+					s.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+						public void onItemSelected(AdapterView<?> arg0,
+								View arg1, int selectedPosition, long arg3) {
+
+							if (selectedPosition == 0) {
+								text2.setText("");
+								lv.setAdapter(null);
+							} else {
+								String str = getPresetDistance(
+										selectedPosition, isMetric);
+								text2.setText(str);
+								distanceButton.setEnabled(false);
+								text2.setFocusable(true);
+								text2.setFocusableInTouchMode(true);
+								text2.requestFocus();
+							}
+						}
+
+						public void onNothingSelected(AdapterView<?> arg0) {
+						}
+					});
+				}
 			}
 		});
 
@@ -188,7 +266,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// do what you want to do when button is clicked
+		// This controls what you want to do when button is clicked
 		InputMethodManager imm = (InputMethodManager) getActivity()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		switch (v.getId()) {
@@ -281,7 +359,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			text3a.setText("");
 			text3b.setText("");
 			text3c.setText("");
-			lv = (ListView) getActivity().findViewById(R.id.ListViewSwim);
+			lv = (ListView) getActivity().findViewById(R.id.ListViewRun);
 			lv.setAdapter(null);
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
@@ -289,6 +367,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			this.setTheFocus();
 			imm.hideSoftInputFromWindow(text2.getWindowToken(), 0);
 			break;
+		
 		}
 	}
 
@@ -298,13 +377,14 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	}
 
 	public void setSplits(double dist, double total) {
-		lv = (ListView) getActivity().findViewById(R.id.ListViewSwim);
+		String measurement = "Mile";
+		if(isMetric) measurement = "Kilometre";
+		lv = (ListView) getActivity().findViewById(R.id.ListViewRun);
 		ArrayList<String> results = new ArrayList<String>();
-		results.add("Kilometre splits (rounded to seconds)");
+		results.add(measurement + " splits (rounded to seconds)");
 		double pace = (total / dist) / 60;
-		// dist = Math.round(dist / Constants.toKmConversion);
 		for (int i = 0; i < (int) dist; i++) {
-			results.add("Km - " + (i + 1) + ": "
+			results.add(measurement + " - " + (i + 1) + ":  "
 					+ getGoodTimeValues(pace * (i + 1)));
 		}
 		results.add("Last split - " + dist + ":  "
@@ -380,7 +460,6 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		Double tSecs = Double
 				.valueOf((total - ((tHours * 60 * 60) + (tMins * 60))));
 		if (!tSecs.isNaN()) {
-			// if(dist!=null)
 			this.setSplits(dist.doubleValue(), totalSecs);
 			return paddedInt(tHours) + ":" + paddedInt(tMins) + ":"
 					+ tSecs.doubleValue();
@@ -404,7 +483,6 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			totalSecs2 = (60 * mins2) + secs2;
 		}
 		if (totalSecs1 > 0.0 && totalSecs2 > 0.0) {
-			// New code to calculate splits
 			this.setSplits(totalSecs1 / totalSecs2, totalSecs1);
 			return "" + totalSecs1 / totalSecs2;
 		} else
@@ -418,19 +496,38 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			return "" + val;
 	}
 
-	private String getPresetDistance(int preset) {
-		if (preset == 1)
-			return "42.195";
-		else if (preset == 2)
-			return "30";
-		else if (preset == 3)
-			return "21.0975";
-		else if (preset == 4)
-			return "10";
-		else if (preset == 5)
-			return "5";
-		else
-			return "";
+	private String getPresetDistance(int preset, boolean isMetric) {
+		if (isMetric) {
+			if (preset == 1)
+				return "42.195";
+			else if (preset == 2)
+				return "30";
+			else if (preset == 3)
+				return "21.0975";
+			else if (preset == 4)
+				return "10";
+			else if (preset == 5)
+				return "5";
+			else
+				return "";
+		} else {
+			if (preset == 1)
+				return "26.21875";
+			else if (preset == 2)
+				return "20";
+			else if (preset == 3)
+				return "13.109375";
+			else if (preset == 4)
+				return "10";
+			else if (preset == 5)
+				return "6.2137";
+			else if (preset == 6)
+				return "5";
+			else if (preset == 7)
+				return "3.10685";
+			else
+				return "";
+		}
 	}
 
 }

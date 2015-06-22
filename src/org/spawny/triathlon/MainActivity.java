@@ -1,6 +1,8 @@
-package org.spawny.duathlon;
+package org.spawny.triathlon;
 
 import java.util.Locale;
+
+import org.spawny.duathlon.R;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -140,7 +142,7 @@ public class MainActivity extends ActionBarActivity implements
 		spawny.append("pace or speed, and make predictions for future events.\n\n");
 		spawny.append("This is a Spawny App by Iain Downie!");
 		text.setText(spawny.toString());
-		ImageView image = (ImageView) dialog.findViewById(R.id.image);
+		/*ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.perfcoach_banner);
 		image.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -150,7 +152,7 @@ public class MainActivity extends ActionBarActivity implements
 				intent.setData(Uri.parse("http://www.performancecoaching.me/"));
 				startActivity(intent);
 			}
-		});
+		});*/
 		Button but = (Button) dialog.findViewById(R.id.dismissButton);
 		dialog.show();
 		but.setOnClickListener(new OnClickListener() {
@@ -166,7 +168,7 @@ public class MainActivity extends ActionBarActivity implements
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.instructions);
 		dialog.setTitle("Instructions");
-		ImageView image = (ImageView) dialog.findViewById(R.id.image);
+		/*ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.perfcoach_banner);
 		image.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -176,7 +178,7 @@ public class MainActivity extends ActionBarActivity implements
 				intent.setData(Uri.parse("http://www.performancecoaching.me/"));
 				startActivity(intent);
 			}
-		});
+		});*/
 		Button but = (Button) dialog.findViewById(R.id.helpDismissButton);
 		dialog.show();
 		but.setOnClickListener(new OnClickListener() {

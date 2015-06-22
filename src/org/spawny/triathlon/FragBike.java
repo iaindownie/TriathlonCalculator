@@ -1,6 +1,8 @@
-package org.spawny.duathlon;
+package org.spawny.triathlon;
 
 import java.util.ArrayList;
+
+import org.spawny.duathlon.R;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,11 +16,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class FragBike extends Fragment implements View.OnClickListener {
 
@@ -28,12 +32,17 @@ public class FragBike extends Fragment implements View.OnClickListener {
 	private EditText text2;
 	private EditText text3a;
 	private Spinner s;
+	private ArrayAdapter<CharSequence> adapter;
 	private ListView lv;
 	private Button clearButton;
 	private Button timeButton;
 	private Button distanceButton;
 	private Button paceButton;
+	private ToggleButton toggle;
+
 	private TextView theFocus;
+	private TextView filler3speed;
+	private boolean isMetric;
 
 	/**
 	 * The fragment argument representing the section number for this fragment.
@@ -57,8 +66,7 @@ public class FragBike extends Fragment implements View.OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.frag_bike, container,
-				false);
+		View rootView = inflater.inflate(R.layout.frag_bike, container, false);
 
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
@@ -79,11 +87,12 @@ public class FragBike extends Fragment implements View.OnClickListener {
 		distanceButton.setOnClickListener(this);
 		paceButton = (Button) rootView.findViewById(R.id.Button03);
 		paceButton.setOnClickListener(this);
+		filler3speed = (TextView) rootView.findViewById(R.id.filler3speed);
 
 		s = (Spinner) rootView.findViewById(R.id.spinnerbike);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				getActivity(), R.array.metricBike,
-				android.R.layout.simple_spinner_item);
+		adapter = ArrayAdapter.createFromResource(getActivity(),
+				R.array.metricBike, android.R.layout.simple_spinner_item);
+		isMetric = true;
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
 		s.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -95,7 +104,7 @@ public class FragBike extends Fragment implements View.OnClickListener {
 					text2.setText("");
 					lv.setAdapter(null);
 				} else {
-					String str = getPresetDistance(selectedPosition);
+					String str = getPresetDistance(selectedPosition, isMetric);
 					text2.setText(str);
 					distanceButton.setEnabled(false);
 					text2.setFocusable(true);
@@ -105,6 +114,79 @@ public class FragBike extends Fragment implements View.OnClickListener {
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+
+		toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
+		toggle.setChecked(true);
+		toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				if (isChecked) {
+					// The toggle is enabled
+					text2.setHint("kms");
+					text3a.setHint("kph");
+					adapter = ArrayAdapter.createFromResource(getActivity(),
+							R.array.metricBike,
+							android.R.layout.simple_spinner_item);
+					isMetric = true;
+					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					s.setAdapter(adapter);
+					s.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+						public void onItemSelected(AdapterView<?> arg0,
+								View arg1, int selectedPosition, long arg3) {
+
+							if (selectedPosition == 0) {
+								text2.setText("");
+								lv.setAdapter(null);
+							} else {
+								String str = getPresetDistance(
+										selectedPosition, isMetric);
+								text2.setText(str);
+								distanceButton.setEnabled(false);
+								text2.setFocusable(true);
+								text2.setFocusableInTouchMode(true);
+								text2.requestFocus();
+							}
+						}
+
+						public void onNothingSelected(AdapterView<?> arg0) {
+						}
+					});
+				} else {
+					// The toggle is disabled
+					text2.setHint("miles");
+					text3a.setHint("mph");
+					adapter = ArrayAdapter.createFromResource(getActivity(),
+							R.array.imperialBike,
+							android.R.layout.simple_spinner_item);
+					isMetric = false;
+					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					s.setAdapter(adapter);
+					s.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+						public void onItemSelected(AdapterView<?> arg0,
+								View arg1, int selectedPosition, long arg3) {
+
+							if (selectedPosition == 0) {
+								text2.setText("");
+								lv.setAdapter(null);
+							} else {
+								String str = getPresetDistance(
+										selectedPosition, isMetric);
+								text2.setText(str);
+								distanceButton.setEnabled(false);
+								text2.setFocusable(true);
+								text2.setFocusableInTouchMode(true);
+								text2.requestFocus();
+							}
+						}
+
+						public void onNothingSelected(AdapterView<?> arg0) {
+						}
+					});
+				}
 			}
 		});
 
@@ -225,6 +307,11 @@ public class FragBike extends Fragment implements View.OnClickListener {
 			String speed = getSpeed(Double.valueOf(d3), Double.valueOf(t1a),
 					Double.valueOf(t1b), Double.valueOf(t1c));
 			text3a.setText(speed);
+			if (isMetric) {
+				filler3speed.setText("kph");
+			} else {
+				filler3speed.setText("mph");
+			}
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
 			paceButton.setEnabled(true);
@@ -260,14 +347,27 @@ public class FragBike extends Fragment implements View.OnClickListener {
 		lv = (ListView) getActivity().findViewById(R.id.ListViewBike);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Conversion summary");
-		results.add(Constants.twoDecPoints.format(Constants.round(dist, 2))
-				+ " miles at " + Constants.twoDecPoints.format(speed) + " mph");
-		results.add(Constants.twoDecPoints.format(Constants.round(
-				(dist * Constants.toKmConversion), 2))
-				+ " kilometers at "
-				+ Constants.twoDecPoints
-						.format((speed * Constants.toKmConversion)) + " kph");
-
+		if (isMetric) {
+			results.add(Constants.twoDecPoints.format(Constants.round(dist, 2))
+					+ " kilometers at " + Constants.twoDecPoints.format(speed)
+					+ " kph");
+			results.add(Constants.twoDecPoints.format(Constants.round(
+					(dist / Constants.toKmConversion), 2))
+					+ " miles at "
+					+ Constants.twoDecPoints
+							.format((speed / Constants.toKmConversion))
+					+ " mph");
+		} else {
+			results.add(Constants.twoDecPoints.format(Constants.round(dist, 2))
+					+ " miles at " + Constants.twoDecPoints.format(speed)
+					+ " mph");
+			results.add(Constants.twoDecPoints.format(Constants.round(
+					(dist * Constants.toKmConversion), 2))
+					+ " kilometers at "
+					+ Constants.twoDecPoints
+							.format((speed * Constants.toKmConversion))
+					+ " kph");
+		}
 		System.out.println("Results:" + results.toString());
 		String[] splits = results.toArray(new String[results.size()]);
 		ListAdapter list = (ListAdapter) (new ArrayAdapter<String>(
@@ -311,16 +411,29 @@ public class FragBike extends Fragment implements View.OnClickListener {
 			return "" + val;
 	}
 
-	private String getPresetDistance(int preset) {
-		if (preset == 1)
-			return "112";
-		else if (preset == 2)
-			return "100";
-		else if (preset == 3)
-			return "56";
-		else if (preset == 4)
-			return "24.85485";
-		else
-			return "";
+	private String getPresetDistance(int preset, boolean isMetric) {
+		if (isMetric) {
+			if (preset == 1)
+				return "180.2465";
+			else if (preset == 2)
+				return "160.9344";
+			else if (preset == 3)
+				return "90.12326";
+			else if (preset == 4)
+				return "40";
+			else
+				return "";
+		} else {
+			if (preset == 1)
+				return "112";
+			else if (preset == 2)
+				return "100";
+			else if (preset == 3)
+				return "56";
+			else if (preset == 4)
+				return "24.85485";
+			else
+				return "";
+		}
 	}
 }
