@@ -40,7 +40,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	private Button timeButton;
 	private Button distanceButton;
 	private Button paceButton;
-	//private ToggleButton toggle;
+	// private ToggleButton toggle;
 
 	private TextView theFocus;
 	private TextView filler3swim;
@@ -129,78 +129,50 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			}
 		});
 
-		/*toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
-		toggle.setChecked(true);
-		toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
-					// The toggle is enabled
-					text2.setHint("metres");
-					filler3swim.setText("/100m");
-					adapter = ArrayAdapter.createFromResource(getActivity(),
-							R.array.metricSwim,
-							android.R.layout.simple_spinner_item);
-					isMetric = true;
-					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-					s.setAdapter(adapter);
-					s.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-						public void onItemSelected(AdapterView<?> arg0,
-								View arg1, int selectedPosition, long arg3) {
-
-							if (selectedPosition == 0) {
-								text2.setText("");
-								lv.setAdapter(null);
-							} else {
-								String str = getPresetDistance(
-										selectedPosition, isMetric);
-								text2.setText(str);
-								distanceButton.setEnabled(false);
-								text2.setFocusable(true);
-								text2.setFocusableInTouchMode(true);
-								text2.requestFocus();
-							}
-						}
-
-						public void onNothingSelected(AdapterView<?> arg0) {
-						}
-					});
-				} else {
-					// The toggle is disabled
-					text2.setHint("yards");
-					filler3swim.setText("/100yd");
-					adapter = ArrayAdapter.createFromResource(getActivity(),
-							R.array.imperialSwim,
-							android.R.layout.simple_spinner_item);
-					isMetric = false;
-					adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-					s.setAdapter(adapter);
-					s.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-						public void onItemSelected(AdapterView<?> arg0,
-								View arg1, int selectedPosition, long arg3) {
-
-							if (selectedPosition == 0) {
-								text2.setText("");
-								lv.setAdapter(null);
-							} else {
-								String str = getPresetDistance(
-										selectedPosition, isMetric);
-								text2.setText(str);
-								distanceButton.setEnabled(false);
-								text2.setFocusable(true);
-								text2.setFocusableInTouchMode(true);
-								text2.requestFocus();
-							}
-						}
-
-						public void onNothingSelected(AdapterView<?> arg0) {
-						}
-					});
-				}
-			}
-		});*/
+		/*
+		 * toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
+		 * toggle.setChecked(true); toggle.setOnCheckedChangeListener(new
+		 * CompoundButton.OnCheckedChangeListener() { public void
+		 * onCheckedChanged(CompoundButton buttonView, boolean isChecked) { if
+		 * (isChecked) { // The toggle is enabled text2.setHint("metres");
+		 * filler3swim.setText("/100m"); adapter =
+		 * ArrayAdapter.createFromResource(getActivity(), R.array.metricSwim,
+		 * android.R.layout.simple_spinner_item); isMetric = true;
+		 * adapter.setDropDownViewResource
+		 * (android.R.layout.simple_spinner_dropdown_item);
+		 * s.setAdapter(adapter); s.setOnItemSelectedListener(new
+		 * OnItemSelectedListener() {
+		 * 
+		 * public void onItemSelected(AdapterView<?> arg0, View arg1, int
+		 * selectedPosition, long arg3) {
+		 * 
+		 * if (selectedPosition == 0) { text2.setText(""); lv.setAdapter(null);
+		 * } else { String str = getPresetDistance( selectedPosition, isMetric);
+		 * text2.setText(str); distanceButton.setEnabled(false);
+		 * text2.setFocusable(true); text2.setFocusableInTouchMode(true);
+		 * text2.requestFocus(); } }
+		 * 
+		 * public void onNothingSelected(AdapterView<?> arg0) { } }); } else {
+		 * // The toggle is disabled text2.setHint("yards");
+		 * filler3swim.setText("/100yd"); adapter =
+		 * ArrayAdapter.createFromResource(getActivity(), R.array.imperialSwim,
+		 * android.R.layout.simple_spinner_item); isMetric = false;
+		 * adapter.setDropDownViewResource
+		 * (android.R.layout.simple_spinner_dropdown_item);
+		 * s.setAdapter(adapter); s.setOnItemSelectedListener(new
+		 * OnItemSelectedListener() {
+		 * 
+		 * public void onItemSelected(AdapterView<?> arg0, View arg1, int
+		 * selectedPosition, long arg3) {
+		 * 
+		 * if (selectedPosition == 0) { text2.setText(""); lv.setAdapter(null);
+		 * } else { String str = getPresetDistance( selectedPosition, isMetric);
+		 * text2.setText(str); distanceButton.setEnabled(false);
+		 * text2.setFocusable(true); text2.setFocusableInTouchMode(true);
+		 * text2.requestFocus(); } }
+		 * 
+		 * public void onNothingSelected(AdapterView<?> arg0) { } }); } } });
+		 */
 
 		text1a.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
@@ -350,7 +322,6 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			imm.hideSoftInputFromWindow(text2.getWindowToken(), 0);
 			break;
 		case R.id.ClearButton:
-			System.out.println("Another flag!!!");
 			text1a.setText("");
 			text1b.setText("");
 			text1c.setText("");
@@ -375,7 +346,6 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	}
 
 	public void setSplits(double dist, double total) {
-		System.out.println("setSplits:" + dist + " : " + total);
 		lv = (ListView) getActivity().findViewById(R.id.ListViewSwim);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Conversion summary");
@@ -396,15 +366,14 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	}
 
 	private String getSpeed(Double dist, Double total, boolean metric) {
-		double speed = (dist/1000.0) / Constants.convertSeconds2DecimalHours(dist, total);
-		System.out.println("GetSpeed3:" + speed);
-		if(metric){
-		return "" + Constants.round(speed, 2);
-		}else{
-			return "" + Constants.round(speed/Constants.toKmConversion, 2);
+		double speed = (dist / 1000.0)
+				/ Constants.convertSeconds2DecimalHours(dist, total);
+		if (metric) {
+			return "" + Constants.round(speed, 2);
+		} else {
+			return "" + Constants.round(speed / Constants.toKmConversion, 2);
 		}
 	}
-
 
 	private String getGoodTimeValues(double val) {
 		int mins = (int) val;
@@ -470,7 +439,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		if (totalSecs1 > 0.0 && totalSecs2 > 0.0) {
 			// New code to calculate splits
 			this.setSplits(totalSecs1 / totalSecs2, totalSecs1);
-			return "" + Constants.round(((totalSecs1 / totalSecs2) * 100),2);
+			return "" + Constants.round(((totalSecs1 / totalSecs2) * 100), 2);
 		} else
 			return "0.0";
 	}

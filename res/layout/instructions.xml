@@ -24,7 +24,6 @@
         android:padding="5dip"
         android:text="Each tab has a toggle between metric and imperial. except SWIM, which is metric only." />
 
-    
     <TextView
         android:id="@+id/helptextContent3"
         android:layout_width="wrap_content"

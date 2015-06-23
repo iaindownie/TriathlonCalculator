@@ -322,7 +322,6 @@ public class FragBike extends Fragment implements View.OnClickListener {
 			imm.hideSoftInputFromWindow(text2.getWindowToken(), 0);
 			break;
 		case R.id.ClearButton:
-			System.out.println("Another flag!!!");
 			text1a.setText("");
 			text1b.setText("");
 			text1c.setText("");
@@ -346,7 +345,6 @@ public class FragBike extends Fragment implements View.OnClickListener {
 	}
 
 	public void setSplits(double speed, double dist) {
-		System.out.println("Speed:" + speed + " Dist: " + dist);
 		lv = (ListView) getActivity().findViewById(R.id.ListViewBike);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Conversion summary");
@@ -371,7 +369,6 @@ public class FragBike extends Fragment implements View.OnClickListener {
 							.format((speed * Constants.toKmConversion))
 					+ " kph");
 		}
-		System.out.println("Results:" + results.toString());
 		String[] splits = results.toArray(new String[results.size()]);
 		ListAdapter list = (ListAdapter) (new ArrayAdapter<String>(
 				getActivity(), android.R.layout.simple_list_item_1, splits));

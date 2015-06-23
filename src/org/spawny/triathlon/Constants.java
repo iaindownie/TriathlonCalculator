@@ -23,12 +23,7 @@ public class Constants {
 		double myMins = totalSeconds / 60;
 		int finalMins = (int) myMins;
 		int mySecs = (int) (totalSeconds - ((int) myMins * 60));
-		//System.out.println("myMins " + myMins);
-		//System.out.println("finalMins " + finalMins);
-		//System.out.println("mySecs " + mySecs);
-		//System.out.println("decimalSecs " + new Double(mySecs / 60.0));
 		double decMins = (finalMins + new Double(mySecs / 60.0)) / 60;
-		//System.out.println("decMins " + decMins);
 		return decMins;
 	}
 }

@@ -78,10 +78,14 @@ public class FragRun extends Fragment implements View.OnClickListener {
 		text3a = (EditText) rootView.findViewById(R.id.EditText03a);
 		text3b = (EditText) rootView.findViewById(R.id.EditText03b);
 		text3c = (EditText) rootView.findViewById(R.id.EditText03c);
-		//text1b.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
-		//text1c.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
-		//text3b.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
-		//text3c.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
+		// text1b.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
+		// text1c.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
+		// text3b.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
+		// text3c.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
 		text1a.setWidth(10);
 		text1b.setWidth(10);
 		text1c.setWidth(10);
@@ -355,7 +359,6 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			imm.hideSoftInputFromWindow(text2.getWindowToken(), 0);
 			break;
 		case R.id.ClearButton:
-			System.out.println("Another flag!!!");
 			text1a.setText("");
 			text1b.setText("");
 			text1c.setText("");
