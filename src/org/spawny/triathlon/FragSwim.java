@@ -40,7 +40,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	private Button timeButton;
 	private Button distanceButton;
 	private Button paceButton;
-	private ToggleButton toggle;
+	//private ToggleButton toggle;
 
 	private TextView theFocus;
 	private TextView filler3swim;
@@ -129,7 +129,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			}
 		});
 
-		toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
+		/*toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
 		toggle.setChecked(true);
 		toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -200,7 +200,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 					});
 				}
 			}
-		});
+		});*/
 
 		text1a.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
@@ -382,17 +382,11 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		double pace = (total / (dist / 100)) / 60;
 		if (isMetric) {
 			results.add("Pace: " + getGoodTimeValues(pace) + " /100m");
-			results.add("Speed: " + getSpeed(dist, total));
+			results.add("Speed: " + getSpeed(dist, total, isMetric) + " kms");
 		} else {
 			results.add("Pace: " + getGoodTimeValues(pace) + " /100yd");
-			results.add("Speed: ");
+			results.add("Speed: " + getSpeed(dist, total, isMetric) + " mph");
 		}
-		/*
-		 * for (int i = 0; i < (int) (dist/100); i++) { results.add("Km - " + (i
-		 * + 1) + ": " + getGoodTimeValues(pace * (i + 1))); }
-		 * results.add("Last split - " + dist + ":  " +
-		 * getGoodTimeEndValues(total));
-		 */
 		String[] splits = results.toArray(new String[results.size()]);
 		ListAdapter birds = (ListAdapter) (new ArrayAdapter<String>(
 				getActivity(), android.R.layout.simple_list_item_1, splits));
@@ -401,36 +395,16 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 
 	}
 
-	private String getSpeed(Double dist, Double total) {
-		double myMins = total / 60;
-		int finalMins = (int) myMins;
-		int mySecs = (int) (total - (int) myMins);
-		int finalSecs = (int) (total - (finalMins * 60));
-		System.out.println("GetSpeed1:" + myMins + " " + mySecs);
-		System.out.println("GetSpeed2:" + finalMins + " " + finalSecs);
-		int hours = finalMins / 60;
-		System.out.println("GetSpeed2b:" + hours);
-		double decMins = (finalMins + (finalSecs / 60)) / 60;
-		System.out.println("GetSpeed2c:" + decMins);
-		double speed = dist / (hours + decMins);
+	private String getSpeed(Double dist, Double total, boolean metric) {
+		double speed = (dist/1000.0) / Constants.convertSeconds2DecimalHours(dist, total);
 		System.out.println("GetSpeed3:" + speed);
-		return "";
-	}
-
-	private String getGoodTimeEndValues(double val) {
-		val = val / 60;
-		int mins = (int) val;
-		double secs = val - mins;
-		if (mins >= 60) {
-			int hours = mins / 60;
-			String str = ((paddedInt((mins - (hours * 60)))) + ":" + paddedInt((int) Math
-					.round(secs * 60)));
-			return str;
-		} else {
-			return paddedInt(mins) + ":"
-					+ paddedInt((int) Math.round(secs * 60));
+		if(metric){
+		return "" + Constants.round(speed, 2);
+		}else{
+			return "" + Constants.round(speed/Constants.toKmConversion, 2);
 		}
 	}
+
 
 	private String getGoodTimeValues(double val) {
 		int mins = (int) val;
@@ -477,7 +451,6 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		if (!tSecs.isNaN()) {
 			// if(dist!=null)
 			this.setSplits(dist.doubleValue(), totalSecs);
-			System.out.println("Pace tSecs " + tSecs.doubleValue());
 			return paddedInt(tMins) + ":" + tSecs.doubleValue();
 		} else {
 			return "00:0.0";
@@ -492,15 +465,12 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		} else {
 			totalSecs1 = (60 * mins1) + secs1;
 		}
-		System.out.println("totalSecs1: " + totalSecs1);
 		double totalSecs2 = 0.0;
 		totalSecs2 = (60 * mins2) + secs2;
-		System.out.println("totalSecs2: " + totalSecs2);
-
 		if (totalSecs1 > 0.0 && totalSecs2 > 0.0) {
 			// New code to calculate splits
 			this.setSplits(totalSecs1 / totalSecs2, totalSecs1);
-			return "" + (int) Math.round(((totalSecs1 / totalSecs2) * 100));
+			return "" + Constants.round(((totalSecs1 / totalSecs2) * 100),2);
 		} else
 			return "0.0";
 	}

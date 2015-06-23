@@ -15,14 +15,22 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="5dip"
-        android:text="This is a really simple app to use as each tab is self-contained. Simply add two of the variables to calculate the third! For example, to calculate the mins per mile pace for a run (RUN (MI) tab), add the total time for the run (e.g. 41 mins and 6 seconds) and the distance (6.2 miles or select the 10km option), then click &apos;Get Pace&apos;. Cyclists do the same with &apos;Get Speed&apos;." />
+        android:text="This is a really simple app to use as each tab is self-contained. Simply add two of the variables to calculate the third! For example, to calculate the mins per km pace for a run (RUN tab), add the total time for the run (e.g. 41 mins and 6 seconds) and the distance (10km), then click &apos;Get Pace&apos;. Cyclists and swimmers do the same with the &apos;Get&apos; buttons on the relevant tabs." />
 
     <TextView
         android:id="@+id/helptextContent2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dip"
-        android:text="Mile or KM splits for run pace tabs are displayed in the scroller below the user fields. They are subject to rounding, so may be a TINY bit off..." />
+        android:text="Each tab has a toggle between metric and imperial. except SWIM, which is metric only." />
+
+    
+    <TextView
+        android:id="@+id/helptextContent3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:text="Mile or KM splits for the RUN tab are displayed in the scroller below the user fields, whilst the BIKE and SWIM tabs have useful conversion summaries. All are subject to rounding, so may be a TINY bit off..." />
 
     <Button
         android:id="@+id/helpDismissButton"

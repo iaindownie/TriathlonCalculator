@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 
 public class Constants {
 	public static double toKmConversion = 1.609344;
+	public static double toYardConversion = 1.093613;
 	public static DecimalFormat twoDecPoints = new DecimalFormat("00.00");
 
 	public static double round(double value, int places) {
@@ -15,5 +16,19 @@ public class Constants {
 		BigDecimal bd = new BigDecimal(value);
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
 		return bd.doubleValue();
+	}
+
+	public static double convertSeconds2DecimalHours(Double dist,
+			Double totalSeconds) {
+		double myMins = totalSeconds / 60;
+		int finalMins = (int) myMins;
+		int mySecs = (int) (totalSeconds - ((int) myMins * 60));
+		//System.out.println("myMins " + myMins);
+		//System.out.println("finalMins " + finalMins);
+		//System.out.println("mySecs " + mySecs);
+		//System.out.println("decimalSecs " + new Double(mySecs / 60.0));
+		double decMins = (finalMins + new Double(mySecs / 60.0)) / 60;
+		//System.out.println("decMins " + decMins);
+		return decMins;
 	}
 }
