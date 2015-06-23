@@ -31,8 +31,8 @@
                     android:id="@+id/togglebutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textOff="Imperial (switch to kms)"
-                    android:textOn="Metric (switch to miles)" />
+                    android:textOff="@string/bikeConversionButton2" 
+                    android:textOn="@string/bikeConversionButton1" />
             </LinearLayout>
         </TableRow>
 

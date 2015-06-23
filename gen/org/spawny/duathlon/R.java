@@ -1918,6 +1918,8 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         public static final int about=0x7f0a0016;
         public static final int app_name=0x7f0a0010;
+        public static final int bikeConversionButton1=0x7f0a0028;
+        public static final int bikeConversionButton2=0x7f0a0029;
         public static final int calcDistButton=0x7f0a0020;
         public static final int calcPaceButton=0x7f0a0021;
         public static final int calcSpeedButton=0x7f0a0022;
@@ -1930,7 +1932,11 @@ containing a value of this type.
         public static final int kmSpeedName=0x7f0a001c;
         public static final int milesSpeedName=0x7f0a001b;
         public static final int minsName=0x7f0a0019;
+        public static final int runConversionButton1=0x7f0a0026;
+        public static final int runConversionButton2=0x7f0a0027;
         public static final int secsName=0x7f0a001a;
+        public static final int swimConversionButton1=0x7f0a002a;
+        public static final int swimConversionButton2=0x7f0a002b;
         public static final int title_section1=0x7f0a0011;
         public static final int title_section2=0x7f0a0012;
         public static final int title_section3=0x7f0a0013;

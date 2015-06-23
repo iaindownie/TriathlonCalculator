@@ -7,6 +7,7 @@ import org.spawny.duathlon.R;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -40,7 +41,7 @@ public class FragRun extends Fragment implements View.OnClickListener {
 	private Button timeButton;
 	private Button distanceButton;
 	private Button paceButton;
-	
+
 	private ToggleButton toggle;
 
 	private TextView theFocus;
@@ -77,6 +78,10 @@ public class FragRun extends Fragment implements View.OnClickListener {
 		text3a = (EditText) rootView.findViewById(R.id.EditText03a);
 		text3b = (EditText) rootView.findViewById(R.id.EditText03b);
 		text3c = (EditText) rootView.findViewById(R.id.EditText03c);
+		//text1b.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
+		//text1c.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
+		//text3b.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
+		//text3c.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
 		text1a.setWidth(10);
 		text1b.setWidth(10);
 		text1c.setWidth(10);
@@ -367,7 +372,7 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			this.setTheFocus();
 			imm.hideSoftInputFromWindow(text2.getWindowToken(), 0);
 			break;
-		
+
 		}
 	}
 
@@ -378,7 +383,8 @@ public class FragRun extends Fragment implements View.OnClickListener {
 
 	public void setSplits(double dist, double total) {
 		String measurement = "Mile";
-		if(isMetric) measurement = "Kilometre";
+		if (isMetric)
+			measurement = "Kilometre";
 		lv = (ListView) getActivity().findViewById(R.id.ListViewRun);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add(measurement + " splits (rounded to seconds)");

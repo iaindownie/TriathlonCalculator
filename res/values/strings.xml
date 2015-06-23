@@ -24,6 +24,13 @@
     <string name="dist_prompt">Choose a measure</string>
 	<string name="Presets">Presets</string>
 	<string name="clearButtonText">Clear fields</string>
+    <string name="runConversionButton1">Kms (switch to miles)</string>
+    <string name="runConversionButton2">Miles (switch to kms)</string>
+    <string name="bikeConversionButton1">Kms (switch to miles)</string>
+	<string name="bikeConversionButton2">Miles (switch to kms)</string>
+    <string name="swimConversionButton1">Metres (switch to yards)</string>
+    <string name="swimConversionButton2">Yards (switch to metres)</string>
+    	
     
     <color name="white">#FFFFFF</color>
 	<color name="darkgreen">#2A5F00</color>

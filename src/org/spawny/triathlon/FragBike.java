@@ -7,6 +7,7 @@ import org.spawny.duathlon.R;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -72,6 +73,8 @@ public class FragBike extends Fragment implements View.OnClickListener {
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);
 		text1c = (EditText) rootView.findViewById(R.id.EditText01c);
+		//text1b.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
+		//text1c.setFilters(new InputFilter[] { new InputFilterMinMax("0", "59") });
 		text2 = (EditText) rootView.findViewById(R.id.EditText02);
 		text3a = (EditText) rootView.findViewById(R.id.EditText03a);
 		text1a.setWidth(10);

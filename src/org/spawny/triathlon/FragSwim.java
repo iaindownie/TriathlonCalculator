@@ -73,12 +73,18 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		theFocus = (TextView) rootView.findViewById(R.id.Topline01);
 		text1a = (EditText) rootView.findViewById(R.id.EditText01a);
 		text1b = (EditText) rootView.findViewById(R.id.EditText01b);
-		text1b.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59")});
 		text1c = (EditText) rootView.findViewById(R.id.EditText01c);
-		text1c.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59")});
 		text2 = (EditText) rootView.findViewById(R.id.EditText02);
 		text3b = (EditText) rootView.findViewById(R.id.EditText03b);
 		text3c = (EditText) rootView.findViewById(R.id.EditText03c);
+		// text1b.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
+		// text1c.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
+		// text3b.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
+		// text3c.setFilters(new InputFilter[] { new InputFilterMinMax("0",
+		// "59") });
 		text1a.setWidth(10);
 		text1b.setWidth(10);
 		text1c.setWidth(10);
@@ -277,7 +283,8 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			String d2 = text2.getText().toString();
 			if (d2 == null || d2.length() == 0)
 				d2 = "0";
-			String time = getTime(Double.valueOf(d2), Double.valueOf(t3b), Double.valueOf(t3c));
+			String time = getTime(Double.valueOf(d2), Double.valueOf(t3b),
+					Double.valueOf(t3c));
 			text1a.setText(time.substring(0, time.indexOf(":")));
 			text1b.setText(time.substring(time.indexOf(":") + 1,
 					time.lastIndexOf(":")));
@@ -304,9 +311,9 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			String fff = text3c.getText().toString();
 			if (fff == null || fff.length() == 0)
 				fff = "0";
-			String dist = getDistance(Double.valueOf(aaa),
-					Double.valueOf(bbb), Double.valueOf(ccc),
-					Double.valueOf(eee), Double.valueOf(fff));
+			String dist = getDistance(Double.valueOf(aaa), Double.valueOf(bbb),
+					Double.valueOf(ccc), Double.valueOf(eee),
+					Double.valueOf(fff));
 			text2.setText(dist);
 			timeButton.setEnabled(true);
 			distanceButton.setEnabled(true);
@@ -329,8 +336,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 				d3 = "0";
 			String pace = getPace(Double.valueOf(d3), Double.valueOf(t1a),
 					Double.valueOf(t1b), Double.valueOf(t1c));
-			text3b.setText(pace.substring(0,
-					pace.indexOf(":")));
+			text3b.setText(pace.substring(0, pace.indexOf(":")));
 			text3c.setText(pace.substring(pace.indexOf(":") + 1));
 			if (isMetric) {
 				filler3swim.setText("/100m");
@@ -369,17 +375,24 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 	}
 
 	public void setSplits(double dist, double total) {
+		System.out.println("setSplits:" + dist + " : " + total);
 		lv = (ListView) getActivity().findViewById(R.id.ListViewSwim);
 		ArrayList<String> results = new ArrayList<String>();
 		results.add("Conversion summary");
-		double pace = (total / (dist/100)) / 60;
-		// dist = Math.round(dist / Constants.toKmConversion);
-		for (int i = 0; i < (int) (dist/100); i++) {
-			results.add("Km - " + (i + 1) + ": "
-					+ getGoodTimeValues(pace * (i + 1)));
+		double pace = (total / (dist / 100)) / 60;
+		if (isMetric) {
+			results.add("Pace: " + getGoodTimeValues(pace) + " /100m");
+			results.add("Speed: " + getSpeed(dist, total));
+		} else {
+			results.add("Pace: " + getGoodTimeValues(pace) + " /100yd");
+			results.add("Speed: ");
 		}
-		results.add("Last split - " + dist + ":  "
-				+ getGoodTimeEndValues(total));
+		/*
+		 * for (int i = 0; i < (int) (dist/100); i++) { results.add("Km - " + (i
+		 * + 1) + ": " + getGoodTimeValues(pace * (i + 1))); }
+		 * results.add("Last split - " + dist + ":  " +
+		 * getGoodTimeEndValues(total));
+		 */
 		String[] splits = results.toArray(new String[results.size()]);
 		ListAdapter birds = (ListAdapter) (new ArrayAdapter<String>(
 				getActivity(), android.R.layout.simple_list_item_1, splits));
@@ -388,17 +401,33 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 
 	}
 
+	private String getSpeed(Double dist, Double total) {
+		double myMins = total / 60;
+		int finalMins = (int) myMins;
+		int mySecs = (int) (total - (int) myMins);
+		int finalSecs = (int) (total - (finalMins * 60));
+		System.out.println("GetSpeed1:" + myMins + " " + mySecs);
+		System.out.println("GetSpeed2:" + finalMins + " " + finalSecs);
+		int hours = finalMins / 60;
+		System.out.println("GetSpeed2b:" + hours);
+		double decMins = (finalMins + (finalSecs / 60)) / 60;
+		System.out.println("GetSpeed2c:" + decMins);
+		double speed = dist / (hours + decMins);
+		System.out.println("GetSpeed3:" + speed);
+		return "";
+	}
+
 	private String getGoodTimeEndValues(double val) {
 		val = val / 60;
 		int mins = (int) val;
 		double secs = val - mins;
 		if (mins >= 60) {
 			int hours = mins / 60;
-			String str = (hours + ":" + (paddedInt((mins - (hours * 60))))
-					+ ":" + paddedInt((int) Math.round(secs * 60)));
+			String str = ((paddedInt((mins - (hours * 60)))) + ":" + paddedInt((int) Math
+					.round(secs * 60)));
 			return str;
 		} else {
-			return "0:" + paddedInt(mins) + ":"
+			return paddedInt(mins) + ":"
 					+ paddedInt((int) Math.round(secs * 60));
 		}
 	}
@@ -412,26 +441,24 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 			 * String str = (hours + ":" + (paddedInt((mins - (hours * 60)))) +
 			 * ":" + paddedInt((int) (secs * 60)));
 			 */
-			String str = (hours + ":" + (paddedInt((mins - (hours * 60))))
-					+ ":" + paddedInt((int) Math.round(secs * 60)));
+			String str = ((paddedInt((mins - (hours * 60)))) + ":" + paddedInt((int) Math
+					.round(secs * 60)));
 			return str;
 		} else {
 			// return "0:" + paddedInt(mins) + ":" + paddedInt((int) (secs *
 			// 60));
-			return "0:" + paddedInt(mins) + ":"
+			return paddedInt(mins) + ":"
 					+ paddedInt((int) Math.round(secs * 60));
 		}
 	}
 
 	private String getTime(Double dist, Double mins, Double secs) {
 		double total = 0.0;
-		total = (dist/100) * ((60 * mins) + secs);
-		System.out.println("Time: TotalSecs: " + total);
+		total = (dist / 100) * ((60 * mins) + secs);
 		int tHours = (int) (total / 60 / 60);
 		int tMins = (int) ((total / 60) - (tHours * 60));
 		double tSecs = (double) (total - ((tHours * 60 * 60) + (tMins * 60)));
 		this.setSplits(dist.doubleValue(), total);
-
 		return paddedInt(tHours) + ":" + paddedInt(tMins) + ":" + tSecs;
 	}
 
@@ -450,8 +477,8 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		if (!tSecs.isNaN()) {
 			// if(dist!=null)
 			this.setSplits(dist.doubleValue(), totalSecs);
-			return paddedInt(tMins) + ":"
-					+ tSecs.doubleValue();
+			System.out.println("Pace tSecs " + tSecs.doubleValue());
+			return paddedInt(tMins) + ":" + tSecs.doubleValue();
 		} else {
 			return "00:0.0";
 		}
@@ -469,11 +496,11 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		double totalSecs2 = 0.0;
 		totalSecs2 = (60 * mins2) + secs2;
 		System.out.println("totalSecs2: " + totalSecs2);
-		
+
 		if (totalSecs1 > 0.0 && totalSecs2 > 0.0) {
 			// New code to calculate splits
 			this.setSplits(totalSecs1 / totalSecs2, totalSecs1);
-			return "" + (int) Math.round(((totalSecs1 / totalSecs2)*100));
+			return "" + (int) Math.round(((totalSecs1 / totalSecs2) * 100));
 		} else
 			return "0.0";
 	}
