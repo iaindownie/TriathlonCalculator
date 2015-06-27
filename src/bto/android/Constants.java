@@ -1,4 +1,4 @@
-package org.spawny.triathlon;
+package bto.android;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,4 +1,4 @@
-package org.spawny.triathlon;
+package bto.android;
 
 import java.util.ArrayList;
 
@@ -129,6 +129,9 @@ public class FragBike extends Fragment implements View.OnClickListener {
 					// The toggle is enabled
 					text2.setHint("kms");
 					text3a.setHint("kph");
+					// Seem to need next line as the textView doesn't refresh without emptying first
+					filler3speed.setText("");
+					filler3speed.setText("kph");
 					adapter = ArrayAdapter.createFromResource(getActivity(),
 							R.array.metricBike,
 							android.R.layout.simple_spinner_item);
@@ -161,6 +164,9 @@ public class FragBike extends Fragment implements View.OnClickListener {
 					// The toggle is disabled
 					text2.setHint("miles");
 					text3a.setHint("mph");
+					// Seem to need next line as the textView doesn't refresh without emptying first
+					filler3speed.setText("");
+					filler3speed.setText("mph");
 					adapter = ArrayAdapter.createFromResource(getActivity(),
 							R.array.imperialBike,
 							android.R.layout.simple_spinner_item);

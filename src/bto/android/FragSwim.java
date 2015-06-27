@@ -1,4 +1,4 @@
-package org.spawny.triathlon;
+package bto.android;
 
 import java.util.ArrayList;
 
@@ -352,7 +352,7 @@ public class FragSwim extends Fragment implements View.OnClickListener {
 		double pace = (total / (dist / 100)) / 60;
 		if (isMetric) {
 			results.add("Pace: " + getGoodTimeValues(pace) + " /100m");
-			results.add("Speed: " + getSpeed(dist, total, isMetric) + " kms");
+			results.add("Speed: " + getSpeed(dist, total, isMetric) + " kmh");
 		} else {
 			results.add("Pace: " + getGoodTimeValues(pace) + " /100yd");
 			results.add("Speed: " + getSpeed(dist, total, isMetric) + " mph");
