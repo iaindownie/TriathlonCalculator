@@ -23,7 +23,7 @@ public class Constants {
 		double myMins = totalSeconds / 60;
 		int finalMins = (int) myMins;
 		int mySecs = (int) (totalSeconds - ((int) myMins * 60));
-		double decMins = (finalMins + new Double(mySecs / 60.0)) / 60;
+		double decMins = (finalMins + Double.valueOf(mySecs / 60.0)) / 60;
 		return decMins;
 	}
 }

@@ -13,7 +13,15 @@
     <string name="hourName">Hour</string>
     <string name="minsName">Mins</string>
     <string name="secsName">Secs</string>
+    <string name="hh">hh</string>
+    <string name="mm">mm</string>
+    <string name="ss">ss</string>
+    <string name="km">km</string>
+    <string name="mile">mile</string>
     <string name="milesSpeedName">Speed (mph)</string>
+    <string name="kph">kph</string>
+    <string name="mph">mph</string>
+    <string name="metres">metres</string>
     <string name="kmSpeedName">Speed (kph)</string>
     <string name="PaceMilesDistance">Enter distance - miles</string>
     <string name="PaceKmDistance">Enter distance - kilometres</string>
@@ -32,6 +40,7 @@
     <string name="swimConversionButton2">Yards (switch to metres)</string>
     <string name="helpText">Add 2 values to get 3rd (e.g. time and dist to get pace)</string>
     <string name="helpTextBike">Add 2 values to get 3rd (e.g. time and dist to get speed)</string>
+    <string name="Dismiss">Dismiss</string>
     	
     
     <color name="white">#FFFFFF</color>

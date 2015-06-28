@@ -45,7 +45,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="hh"
+                    android:hint="@string/hh"
                     android:inputType="number"
                     android:maxLength="2"
                     android:text="" />
@@ -55,7 +55,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="mm"
+                    android:hint="@string/mm"
                     android:inputType="number"
                     android:maxLength="2"
                     android:text="" />
@@ -65,7 +65,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="ss"
+                    android:hint="@string/ss"
                     android:inputType="numberDecimal"
                     android:maxLength="6"
                     android:text="" />
@@ -95,7 +95,7 @@
                     android:id="@+id/EditText02"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="kms"
+                    android:hint="@string/km"
                     android:inputType="numberDecimal"
                     android:maxLength="9"
                     android:width="100dip" />
@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="kph"
+                    android:hint="@string/kph"
                     android:inputType="numberDecimal"
                     android:maxLength="7"
                     android:text=""
