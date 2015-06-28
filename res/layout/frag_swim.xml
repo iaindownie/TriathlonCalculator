@@ -18,32 +18,14 @@
             <LinearLayout
                 android:id="@+id/LinearLayout02"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="7dip"
-                android:paddingTop="5dip" >
+                android:layout_height="wrap_content" >
 
                 <TextView
                     android:id="@+id/Topline01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dip"
-                    android:text="Options >>" />
-
-                <TextView
-                    android:id="@+id/Topline01b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dip"
-                    android:text="Yards option disabled" />
-
-                <!--
-                     <ToggleButton
-                    android:id="@+id/togglebutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOff="@string/swimConversionButton2" 
-                    android:textOn="@string/swimConversionButton1" />
-                -->
+                    android:text="@string/helpText" />
             </LinearLayout>
         </TableRow>
 
@@ -182,6 +164,25 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/TableRowFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/lightBlue" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/FooterLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dip"
+                    android:text="" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
             android:id="@+id/TableRow07"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -195,7 +196,6 @@
                     android:id="@+id/ClearButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dip"
                     android:text="@string/clearButtonText"
                     android:textSize="12sp" />
             </LinearLayout>

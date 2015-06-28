@@ -25,14 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dip"
-                    android:text="Options >>" />
-
-                <ToggleButton
-                    android:id="@+id/togglebutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOff="@string/bikeConversionButton2" 
-                    android:textOn="@string/bikeConversionButton1" />
+                    android:text="@string/helpTextBike" />
             </LinearLayout>
         </TableRow>
 
@@ -166,6 +159,25 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/TableRowFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/lightOrange" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/FooterLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dip"
+                    android:text="" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
             android:id="@+id/TableRow07"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -175,11 +187,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
+                <ToggleButton
+                    android:id="@+id/togglebuttonBike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="@string/bikeConversionButton2"
+                    android:textOn="@string/bikeConversionButton1"
+                    android:textSize="12sp" />
+
                 <Button
                     android:id="@+id/ClearButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dip"
                     android:text="@string/clearButtonText"
                     android:textSize="12sp" />
             </LinearLayout>

@@ -128,7 +128,7 @@ public class FragRun extends Fragment implements View.OnClickListener {
 			}
 		});
 
-		toggle = (ToggleButton) rootView.findViewById(R.id.togglebutton);
+		toggle = (ToggleButton) rootView.findViewById(R.id.togglebuttonRun);
 		toggle.setChecked(true);
 		toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView,
