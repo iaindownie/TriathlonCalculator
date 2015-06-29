@@ -9,6 +9,12 @@ public class Constants {
 	public static double toYardConversion = 1.093613;
 	public static DecimalFormat twoDecPoints = new DecimalFormat("00.00");
 
+	/**
+	 * Generic rounding method
+	 * @param value
+	 * @param places
+	 * @return
+	 */
 	public static double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();

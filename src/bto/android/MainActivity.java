@@ -2,7 +2,7 @@ package bto.android;
 
 import java.util.Locale;
 
-import org.spawny.duathlon.R;
+import bto.android.R;
 
 import android.app.Dialog;
 import android.content.Context;

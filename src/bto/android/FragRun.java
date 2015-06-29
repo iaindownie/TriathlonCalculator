@@ -2,7 +2,7 @@ package bto.android;
 
 import java.util.ArrayList;
 
-import org.spawny.duathlon.R;
+import bto.android.R;
 
 import android.content.Context;
 import android.os.Bundle;

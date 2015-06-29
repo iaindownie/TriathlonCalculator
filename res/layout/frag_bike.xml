@@ -22,7 +22,8 @@
 
                 <TextView
                     android:id="@+id/Topline01"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dip"
                     android:text="@string/helpTextBike" />
@@ -172,7 +173,7 @@
                 <TextView
                     android:id="@+id/FooterLine"
                     android:layout_width="wrap_content"
-                    android:layout_height="3dip"
+                    android:layout_height="5dip"
                     android:text="" />
             </LinearLayout>
         </TableRow>
