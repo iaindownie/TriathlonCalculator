@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements
 	 */
 	ViewPager mViewPager;
 	private PackageInfo pInfo = null;
-	private Dialog dialog;
+	//private Dialog dialog;
 	Integer tabPref;
 	SharedPreferences prefs;
 
@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements
 		setContentView(R.layout.activity_main);
 
 		prefs = getPreferences(Context.MODE_PRIVATE);
-		tabPref = prefs.getInt("tabPref", 99);
+		tabPref = prefs.getInt("tabPref", 0);
 		System.out.println("TabPref Get in MainActivity:" + tabPref);
 
 		// Set up the action bar.
@@ -123,13 +123,18 @@ public class MainActivity extends ActionBarActivity implements
 
 	private void doAboutDialog() {
 		try {
-			pInfo = getPackageManager().getPackageInfo("org.spawny.duathlon",
+			pInfo = getPackageManager().getPackageInfo("bto.android",
 					PackageManager.GET_META_DATA);
-
+			//System.out.println("IAIN:" + getApplicationContext().getPackageName());
+			/*
+			 * pInfo = getPackageManager().getPackageInfo("org.spawny.duathlon",
+			 * PackageManager.GET_META_DATA);
+			 */
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
-		dialog = new Dialog(this);
+		//dialog = new Dialog(this);
+		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.about);
 		dialog.setTitle("Run/Bike Calculator " + pInfo.versionName);
 		TextView text = (TextView) dialog.findViewById(R.id.text);
